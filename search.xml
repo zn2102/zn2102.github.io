@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>测试组</title>
+      <link href="/2023/11/19/GroupTest/"/>
+      <url>/2023/11/19/GroupTest/</url>
+      
+        <content type="html"><![CDATA[<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>123</p><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>一二三</p><h3 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><p>😀</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>张三</p><h3 id="组员照片"><a href="#组员照片" class="headerlink" title="组员照片"></a>组员照片</h3><p><img src="/./images/test.jpeg" alt="测试图片"></p><h3 id="组员分工"><a href="#组员分工" class="headerlink" title="组员分工"></a>组员分工</h3><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h3><p><img src="/./images/test2.png" alt="测试图片"></p><h3 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">我是代码<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小组作业 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 测试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第八组</title>
       <link href="/2023/11/14/GroupEight/"/>
       <url>/2023/11/14/GroupEight/</url>
@@ -141,7 +166,7 @@
       <link href="/2023/11/14/GroupOne/"/>
       <url>/2023/11/14/GroupOne/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="我是第一组"><a href="#我是第一组" class="headerlink" title="我是第一组"></a>我是第一组</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><p><img src="/./images/test2.png" alt="测试图片"></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><h3 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><h3 id="组员照片"><a href="#组员照片" class="headerlink" title="组员照片"></a>组员照片</h3><p><img src="/./images/test.jpeg" alt="测试图片"></p><h3 id="组员分工"><a href="#组员分工" class="headerlink" title="组员分工"></a>组员分工</h3><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h3><p><img src="/./images/test2.png" alt="测试图片"></p><h3 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">我是代码<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
       
       
       <categories>
