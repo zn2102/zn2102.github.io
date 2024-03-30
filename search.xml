@@ -29,11 +29,11 @@
     
     
     <entry>
-      <title>第一组</title>
+      <title>Implementing Cat and Dog Classification Based on Pytorch</title>
       <link href="/2023/10/31/GroupOne/"/>
       <url>/2023/10/31/GroupOne/</url>
       
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>Implementing Cat and Dog Classification Based on Pytorch<br>基于Pytorch实现猫狗分类</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>猫狗分类项目是一个经典的图像分类任务，它旨在通过训练一个深度学习模型来区分图像中的内容是猫还是狗。在这个项目中，我们将使用PyTorch这个流行的深度学习框架来实现。</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>李好 谭静雅</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="项目讲解"><a href="#项目讲解" class="headerlink" title="项目讲解"></a>项目讲解</h4><ol><li>数据准备<br>首先，我们需要准备一个包含猫和狗图片的数据集。这个数据集通常被划分为训练集、验证集和测试集。训练集用于训练模型，验证集用于调整模型参数和超参数，测试集用于评估模型的性能。</li><li>数据预处理<br>在将数据输入模型之前，我们需要对数据进行一些预处理操作。这通常包括：</li></ol><p>图像大小调整：将图像调整到模型输入所需的尺寸。<br>归一化：将图像的像素值缩放到一个特定的范围（通常是0到1之间），以加速模型的训练。<br>数据增强：通过随机旋转、裁剪、翻转等操作增加训练数据的多样性，提高模型的泛化能力。</p><ol start="3"><li><p>模型构建<br>在PyTorch中，我们可以使用nn.Module来构建自己的神经网络模型。对于猫狗分类任务，一个常见的选择是使用卷积神经网络（CNN）。CNN能够有效地从图像中提取特征，并通过全连接层进行分类。</p></li><li><p>定义损失函数和优化器<br>损失函数：用于衡量模型预测结果与真实标签之间的差异。对于分类任务，常用的损失函数包括交叉熵损失（CrossEntropyLoss）。<br>优化器：用于更新模型的权重以最小化损失函数。常用的优化器包括随机梯度下降（SGD）、Adam等。</p></li><li><p>训练模型<br>在训练阶段，我们将多次遍历训练集，每次从训练集中取出一批数据，计算损失，并通过优化器更新模型的权重。为了监控模型的训练过程，我们还可以在验证集上计算模型的性能指标（如准确率）。</p></li><li><p>评估模型<br>在模型训练完成后，我们使用测试集来评估模型的性能。通常，我们会计算模型在测试集上的准确率、精确率、召回率等指标。</p></li><li><p>模型部署与应用<br>最后，我们可以将训练好的模型部署到实际应用中，用于对新的图像进行猫狗分类。这通常涉及到将模型导出为可执行的格式，并在实际应用中加载和使用模型进行预测。</p></li></ol><p>注意事项<br>过拟合与欠拟合：在训练过程中，要注意防止模型出现过拟合或欠拟合的情况。可以通过调整模型复杂度、增加正则化项、使用早停法等方法来缓解这些问题。<br>超参数调整：模型的性能往往受到超参数（如学习率、批次大小、训练轮数等）的影响。可以通过网格搜索、随机搜索或贝叶斯优化等方法来找到最佳的超参数组合。<br>硬件资源：深度学习模型的训练通常需要大量的计算资源，包括GPU和内存。因此，在进行猫狗分类项目时，要确保有足够的硬件资源来支持模型的训练和部署。</p><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>一、环境配置<br>1、安装Anaconda<br>Anaconda是一个用于科学计算的python发行版，它提供了包管理和环境管理的功能。在官网根据python版本进行选择。<br>2、配置Pytorch<br>创建名为pytorch的虚拟环境<br>(base) C:\Users\XYtentrary&gt;conda create -n pytorch python=3.9<br>在此环境下安装<br>(pytorch) C:\Users\XYtentrary&gt;conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=11.1 -c pytorch -c conda-forge<br>二、数据集的准备<br>1、数据集的下载<br>通过kaggle网站进行对所需数据集的下载<br><a href="https://www.kaggle.com/lizhensheng/-2000">https://www.kaggle.com/lizhensheng/-2000</a><br>2.数据集的分类<br>将下载的数据集放入名为data的文件夹下并进行解压操作<br>得到的数据集分为test和train两个文件夹。（文件夹下包含cats和dogs图片）<br><img src="/images/1/1-1.png"><br>3.导入相应的库<br>以下是用pytorch进行分类时需导入的库的大致类别：<br>import torch<br>import torchvision<br>import torch.nn as nn<br>import torch.optim as optim<br>import torch.utils.data as data</p><h4 id="项目计划"><a href="#项目计划" class="headerlink" title="项目计划"></a>项目计划</h4><p>一、导入库<br>二、加载数据<br>三、构建模型<br>四、训练模型<br>五、实现分类预测测试<br>六、预测结果展示与分析</p><h4 id="项目进展汇报"><a href="#项目进展汇报" class="headerlink" title="项目进展汇报"></a>项目进展汇报</h4><p>一、导入相应的库<br>import matplotlib.pyplot as plt<br>import torch<br>import torch.nn as nn<br>from torch.optim import Adam<br>from torchvision import transforms<br>from torchvision import models<br>from torchvision.io import read_image<br>from torch.nn import functional as F<br>from torch.utils.data import Dataset, DataLoader<br>import numpy as np<br>from sklearn.model_selection import StratifiedShuffleSplit<br>import os<br>os.environ[‘TORCH_HOME’]=’./download_model’  # 修改Pytorch模型默认下载位置</p><p>二、加载数据<br>数据预处理<br>在基于Pytorch实现猫狗分类任务时，对数据进行适当的预处理是至关重要的。以下是对数据进行预处理的详细步骤：即可以完成对猫狗分类数据集的基本预处理。<br>·获取train目录下的文件路径名<br><img src="/images/1/1-2.png"><br>·使用 StratifiedShuffleSplit 进行随机分层抽样<br>将25000张图片按 8:1:1 的比例分为训练集、验证集和测试集，且每个数据集中猫和狗的占比均相同<br><img src="/images/1/1-3.png"><br><img src="/images/1/1-4.png"><br>·定义Pytorch数据加载类（定义Dataset）<br><img src="/images/1/1-5.png"><br>·定义一些指标<br> -image_size = [224, 224]  # 图片大小<br> batch_size = 20# 批大小<br>·定义图像增强器<br><img src="/images/1/1-6.png"><br><img src="/images/1/1-7.png"><br><img src="/images/1/1-8.png"><br><img src="/images/1/1-9.png"><br><img src="/images/1/1-10.png"><br>三、构建模型<br>模型选择<br>使用残差神经网络(ResNet)效果最佳，其极大的消除了深度过大的神经网络训练困难问题，可以让更深的网络也可以得到更好的训练效果。<br>模型搭建<br>·对预训练的ResNet50模型进行部分修改，将顶层的1000类输出替换为2类，并冻结参数。(在当前文件夹下新建download_model文件夹，因为导入库时我们使用os将Pytorch的目录重定向到download_model，ResNet50将会下载到这个文件夹内)<br><img src="/images/1/1-11.png"><br>·打印出模型<br>·将模型迁移到GPU上提高训练速度<br><img src="/images/1/1-12.png"><br>·定义优化器和损失函数<br><img src="/images/1/1-13.png"><br><img src="/images/1/1-14.png"></p><h4 id="下一步行动"><a href="#下一步行动" class="headerlink" title="下一步行动"></a>下一步行动</h4><p>四、训练模型<br>五、实现分类预测测试<br>六、预测结果展示与分析</p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
       
       
       <categories>
@@ -43,16 +43,22 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 基于Pytorch实现猫狗分类 </tag>
+            
+        </tags>
+      
     </entry>
     
     
     
     <entry>
-      <title>第二组</title>
+      <title>Using Neural Networks for Clothing Classification</title>
       <link href="/2023/10/30/GroupTwo/"/>
       <url>/2023/10/30/GroupTwo/</url>
       
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>Using Neural Networks for Clothing Classification<br>利用神经网络进行服饰数据分类</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>利用神经系统进行数据服饰分类</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>高金  徐萌嘉</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="一、课程设计的目的"><a href="#一、课程设计的目的" class="headerlink" title="一、课程设计的目的"></a>一、课程设计的目的</h4><p>1.1本次课程训练选题</p><p>利用神经系统进行数据服饰分类</p><p>1.2选题的意义</p><p>神经系统能够模拟人类大脑的工作方式，具有强大的学习能力和智能识别能力，可以更准确地识别和分类数据，提高分类的准确性；神经系统在处理数据分类时能够并行处理大量信息，使得分类过程更加高效快速，节省时间和人力成本；神经系统对于复杂的数据模式和特征具有较强的适应能力，能够处理各种形式的数据，并且在面对大规模数据时也能保持良好的表现，可以实现实时数据分类，及时响应和处理不断变化的数据，满足对实时性要求较高的应用场景需求。</p><p>1.3选题对学习的帮助</p><p>本设计使用python软件编写，我们通过网络搜索等方式进行了软件的安装和环境的配置。利用神经系统进行服饰分类涉及大量数据的处理和分析，学习者在这个过程中可以提升学习者自己的数据处理能力和解决问题的能力，提升了学习者对整个项目的把控能力。</p><h4 id="二、需求分析"><a href="#二、需求分析" class="headerlink" title="二、需求分析"></a>二、需求分析</h4><p>2.1项目描述<br><img src="/images/2/1-1.png"><br>首先进行数据收集：收集大量的服饰图像数据作为训练集，包括不同种类、颜色、款式的服饰图片。</p><p>然后进行数据预处理：包括图像清洗、尺寸调整、标准化等操作，确保数据质量和一致性。<br>下一步构建神经网络模型：利用pytorch搭建四层全连接神经网络训练服饰分类模型。<br>接着模型训练：将预处理后的数据输入神经网络模型中进行训练，通过多次迭代学习服饰的特征和分类规律。</p><p>然后模型评估：使用测试集对训练好的模型进行评估，检查其在未见过的数据上的表现，调整模型参数以提高分类准确性。<br>最后模型部署：将训练好的模型部署到实际应用中，如服装电商平台，实现对服饰的自动分类和识别功能。</p><p>2.2实现功能</p><p>对服饰的自动分类和识别功能。</p><h4 id="三、实现步骤"><a href="#三、实现步骤" class="headerlink" title="三、实现步骤"></a>三、实现步骤</h4><p>3.1总括<br>通过业界知名的深度学习框架pytorch搭建四层全连接神经网络，分析Fashion-MNIST数据集中的六万张训练集图片和一万张测试集图片，观察训练误差和验证误差随训练代数提高的变化。<br><img src="/images/2/1-2.png"><br>3.2详细说明</p><p>首先构建包含多种服饰图片的数据集，接下来搭建并训练普通的四层全连接神经网络，训练后进行模型验证，观察效果，发现过拟合明显。 通过Dropout方法，减少过拟合。 你将掌握图像多分类、准确率与误差分析、搭建全连接神经网络并通过Adam算法进行梯度下降训练。</p><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch  <span class="token comment"># 导入pytorch</span><span class="token keyword">from</span> torch <span class="token keyword">import</span> nn<span class="token punctuation">,</span> optim  <span class="token comment"># 导入神经网络与优化器对应的类</span><span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F <span class="token keyword">from</span> torchvision <span class="token keyword">import</span> datasets<span class="token punctuation">,</span> transforms <span class="token comment">## 导入数据集与数据预处理的方法</span><span class="token comment"># 数据预处理：标准化图像数据，使得灰度数据在-1到+1之间</span>transform <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token comment"># 下载Fashion-MNIST训练集数据，并构建训练集数据载入器trainloader,每次从训练集中载入64张图片，每次载入都打乱顺序</span>trainset <span class="token operator">=</span> datasets<span class="token punctuation">.</span>FashionMNIST<span class="token punctuation">(</span><span class="token string">'dataset/'</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transform<span class="token punctuation">)</span>trainloader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>trainset<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token comment"># 下载Fashion-MNIST测试集数据，并构建测试集数据载入器trainloader,每次从测试集中载入64张图片，每次载入都打乱顺序</span>testset <span class="token operator">=</span> datasets<span class="token punctuation">.</span>FashionMNIST<span class="token punctuation">(</span><span class="token string">'dataset/'</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> transform<span class="token operator">=</span>transform<span class="token punctuation">)</span>testloader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>testset<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
       
       
       <categories>
@@ -62,16 +68,22 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 利用神经网络进行服饰数据分类 </tag>
+            
+        </tags>
+      
     </entry>
     
     
     
     <entry>
-      <title>第四组</title>
-      <link href="/2023/10/29/GroupFour/"/>
-      <url>/2023/10/29/GroupFour/</url>
+      <title>Bag of Multi-label Descriptors for Noisy Chest X-ray Classification</title>
+      <link href="/2023/10/29/GroupThree/"/>
+      <url>/2023/10/29/GroupThree/</url>
       
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>Bag of Multi-label Descriptors for Noisy Chest X-ray Classification<br>胸部X射线噪声分类</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>BoMD通过利用来自BERT模型的词嵌入中包含的标签的语义信息来平滑地重新标记嘈杂的多标签医学图像数据集，用其邻域的估计标签分布重新标记有噪声的标签样本。</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>王晓航 赵中哲</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><p>BoMD通过利用来自BERT模型的词嵌入中包含的标签的语义信息来平滑地重新标记嘈杂的多标签医学图像数据集，用其邻域的估计标签分布重新标记有噪声的标签样本。<br>BoMD有三个阶段: </p><ol><li>图像描述学习，将训练图像转换成一个视觉描述符包，这些描述符位于BERT语义空间中，由BERT模型从图像标签产生的词嵌入填充 ，学习一袋多标签图像描述符 (MID) 来表示一组BERT语义描述符的标签; </li><li>噪声标签样本检测基于验证从 (1) 的多个描述符估计的排名靠前的标签是否是该样本的多个标签，根据MID分类的标签排名识别噪声样本；<br>3)基于最近邻样本的标签传播，对噪声样本进行平滑重标记。这平滑地重新标记了数据集，然后将其用于训练多标签分类。使用通过MID构建的图的标签传播来平滑地重新标记多标签样本。<br>受BoW的激励，如下图MID通过将其多个标签与一个全局视觉描述符包关联来表示一个图像。MID使用一组视觉描述符将图像投影到BERT的语义空间中，这些描述符被优化，以提高它们与BERT模型产生的语义描述符的相似性，从图像的多标签注释。<br><img src="/images/3/1-1.png"><br>用学习到的图像描述符构建一个图，以便顺利地对训练数据重新贴标签。考虑到学习视觉描述符可能更接近清洁标签的语义空间，我们制定检测噪声训练样本第一排名（相似度降序）的标签图像（根据余弦相似度与单词嵌入标签）。<br>实验主要包含4个数据集, 即两个包含噪音的训练集NIH 和 ChestXpert以及两个干净的测试集OpenI, PadChest和NIH-Google. 实验的主要策略就是在NIH/ChestXpert上训练然后再OpenI/PadChest/NIH-Google上测试。<br><img src="/images/3/1-2.png"></li></ol><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
       
       
       <categories>
@@ -81,16 +93,22 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 胸部X射线噪声分类 </tag>
+            
+        </tags>
+      
     </entry>
     
     
     
     <entry>
-      <title>第五组</title>
-      <link href="/2023/10/28/GroupFive/"/>
-      <url>/2023/10/28/GroupFive/</url>
+      <title>A Deep Reinforcement Learning Approach to Supply Chain Inventory Management</title>
+      <link href="/2023/10/28/GroupFour/"/>
+      <url>/2023/10/28/GroupFour/</url>
       
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>A Deep Reinforcement Learning Approach to Supply Chain Inventory Management<br>供应链库存管理的深度强化学习方法</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>利用强化学习和深度学习的最新发展来解决供应链库存管理(SCIM)问题</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>王海栋、刘明培、全晓杰、李尧</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h4><p>供应链和价格管理是企业运营中最早采用数据科学和组合优化方法的领域之一。深度强化学习（深度学习加强化学习）定价有可能大大提高这些和其他类型的企业运营的优化能力。<br>我们利用强化学习和深度学习的最新发展来解决供应链库存管理(SCIM)问题，这是一个复杂的顺序决策问题，包括确定在给定时间范围内生产和运送到不同仓库的产品的最佳数量。给出了随机两梯队供应链环境的数学表达式，该环境允许管理任意数量的仓库和产品类型。</p><h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>我们（论文中）设计了一个发散的两级供应链，包括一个工厂、一个工厂仓库和J个配送仓库;这种结构的一个例子如图所示。<br><img src="/images/4/1-1.png" alt="工厂、仓储仓库、运输、商店、购买者"><br>具体要考虑的参数有：产品随时间季度变化的收入，生产成本，运输成本，总体存储成本，总利润等。</p><h4 id="所需具体软件"><a href="#所需具体软件" class="headerlink" title="所需具体软件"></a>所需具体软件</h4><p><img src="/images/4/1-2.png"><br><img src="/images/4/1-3.png"></p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
       
       
       <categories>
@@ -100,16 +118,22 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 供应链库存管理的深度强化学习方法 </tag>
+            
+        </tags>
+      
     </entry>
     
     
     
     <entry>
-      <title>第三组</title>
-      <link href="/2023/10/27/GroupThree/"/>
-      <url>/2023/10/27/GroupThree/</url>
+      <title>CLIP</title>
+      <link href="/2023/10/27/GroupFive/"/>
+      <url>/2023/10/27/GroupFive/</url>
       
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>CLIP<br>CLIP多模态模型</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>图像分类和检索、内容调节</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>张宗一 王皓</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="一：CLIP多模态是什么"><a href="#一：CLIP多模态是什么" class="headerlink" title="一：CLIP多模态是什么"></a>一：CLIP多模态是什么</h4><p>CLIP是一种多模态预训练模型，用于将文本和图像信息相结合，实现强大的跨模态理解和生成能力。</p><p>CLIP模型由OpenAI于2021年推出，其核心思想是将视觉和语言的表示方式相互联系起来，从而实现图像分类任务。CLIP模型采用了对比学习(Contrastive Learning)和预训练(Pre-Training)的方法，使得模型能够在大规模无标注数据上进行训练，并学习到具有良好泛化能力的特征表示。在CLIP模型中，图像和文本被映射到同一表示空间，并通过对比不同图像和文本对之间的相似性和差异性进行训练，从而学习到具有区分度的特征表示。<br>Clip（Contrastive Language-Image Pre-Training）是由OpenAI于2021年推出的一种深度学习模型，它是一种可以同时处理文本和图像的预训练模型。与以往的图像分类模型不同，Clip并没有使用大规模的标注图像数据集来进行训练，而是通过自监督学习的方式从未标注的图像和文本数据中进行预训练，使得模型能够理解图像和文本之间的语义联系。</p><p>CLIP(Contrastive Language Image Pretraining)这篇文章出自OPEN-AI大名鼎鼎的Alec-Radford（GPT系列的一作，在GAN，Diffusion等各种生成领域都颇有影响力）。而CLIP这篇论文可以看做是多模态在预训练时代的一次妙到巅峰的任务设计。<br>NLP领域里借助海量文本进行无（自）监督式的预训练使得各种与下游任务类型无关的模型架构成为可能，并取得了非常好的迁移性和效果。CLIP使用了一种对比学习的方式，在4亿图文对上进行了文本和图片的匹配任务训练，使得该模型在无任何微调的情况下（zero-shot），在imageNet上取得了和ResNet-<br><img src="/images/5/1-1.png"><br>50微调后一样的效果。</p><p>Clip模型的核心思想是通过学习图像和文本之间的匹配关系来提高模型的性能。具体来说，Clip模型包含两个主要组成部分：一个用于处理图像的卷积神经网络（CNN）和一个用于处理文本的Transformer模型。这两个组件都被训练成能够将输入的信息映射到相同的嵌入空间中，并使得相似的图像和文本在嵌入空间中的距离更近。</p><p>Clip模型的预训练分为两个阶段：第一阶段是通过一个大规模的文本数据集来训练Transformer模型，使得模型能够理解文本之间的关系；第二阶段则是使用一个大规模的图像和文本数据集来训练整个Clip模型，使得模型能够将文本和图像之间的联系进行匹配。实现的伪代码如下：<br><img src="/images/5/1-2.png"></p><h4 id="二：所用的软件"><a href="#二：所用的软件" class="headerlink" title="二：所用的软件"></a>二：所用的软件</h4><ol><li>python<img src="/images/5/1-3.png"></li><li>anaconda<img src="/images/5/1-4.png"></li><li>cuda<img src="/images/5/1-5.png"></li><li>pycharm<img src="/images/5/1-6.png"></li></ol><h4 id="三：我们组所做的内容"><a href="#三：我们组所做的内容" class="headerlink" title="三：我们组所做的内容"></a>三：我们组所做的内容</h4><p>图像分类和检索：CLIP可以通过将图像与自然语言文本描述关联起来进而可用于图像分类任务。它允许更通用和灵活的图像检索系统，用户可以使用文本查询来在数据库里搜索图像。<br>内容调节：CLIP可用于通过分析图像和附带文本来识别和过滤不适当或有害的内容，从而调节在线平台上的展示内容。</p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
       
       
       <categories>
@@ -119,16 +143,22 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> CLIP多模态模型 </tag>
+            
+        </tags>
+      
     </entry>
     
     
     
     <entry>
-      <title>第七组</title>
-      <link href="/2023/10/26/GroupSeven/"/>
-      <url>/2023/10/26/GroupSeven/</url>
+      <title>QLORA Efficient Finetuning of Quantized LLMs</title>
+      <link href="/2023/10/26/GroupSix/"/>
+      <url>/2023/10/26/GroupSix/</url>
       
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>QLORA: Efficient Finetuning of Quantized LLMs<br>大模型微调</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>基于大模型的内在低秩特性，增加旁路矩阵来模拟全参数微调，LoRA 通过简单有效的方案来达成轻量微调的目的。</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>张义 郭俊桐</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="Adapter-Tuning"><a href="#Adapter-Tuning" class="headerlink" title="Adapter Tuning"></a>Adapter Tuning</h4><p>通过添加Adapter模块来避免全模型微调与灾难性遗忘的问题。Adapter方法不需要微调预训练模型的全部参数，通过引入少量针对特定任务的参数，来存储有关该任务的知识，降低对模型微调的算力要求。</p><h4 id="Prefix-Tuning"><a href="#Prefix-Tuning" class="headerlink" title="Prefix Tuning"></a>Prefix Tuning</h4><p>前缀微调（prefix-tunning），用于生成任务的轻量微调。前缀微调将一个连续的特定于任务的向量序列添加到输入，称之为前缀，如下图中的红色块所示。与提示（prompt）不同的是，前缀完全由自由参数组成，与真正的token不对应。相比于传统的微调，前缀微调只优化了前缀。因此，我们只需要存储一个大型Transformer和已知任务特定前缀的副本，对每个额外任务产生非常小的开销。</p><h4 id="P-Tuning"><a href="#P-Tuning" class="headerlink" title="P-Tuning"></a>P-Tuning</h4><p>同时加了两个改动： 1. 考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码 2. 在输入上加入了anchor，比如对于RTE任务，加上一个问号变成[PRE][prompt tokens][HYP]?[prompt tokens][MASK]后效果会更好</p><h4 id="Prompt-Tuning"><a href="#Prompt-Tuning" class="headerlink" title="Prompt Tuning"></a>Prompt Tuning</h4><p>Prompt-tuning给每个任务定义了自己的Prompt，拼接到数据上作为输入，同时freeze预训练模型进行训练，在没有加额外层的情况下，随着模型体积增大效果越来越好。</p><h4 id="QLoRA"><a href="#QLoRA" class="headerlink" title="QLoRA"></a>QLoRA</h4><p>基于大模型的内在低秩特性，增加旁路矩阵来模拟全参数微调，LoRA 通过简单有效的方案来达成轻量微调的目的。它的应用自不必提，可以将现在的各种大模型通过轻量微调变成各个不同领域的专业模型。</p><p>此外，考虑 OpenAI 对 GPT 模型的认知，GPT的本质是对训练数据的有效压缩，从而发现数据内部的逻辑与联系，LoRA 的思想与之有相通之处，原模型虽大，但起核心作用的参数是低秩的，通过增加旁路，达到四两拨千斤的效果。QLoRA就是对模型进行量化和压缩，可以在消费级显卡上进行大模型的微调。</p><p>我们接下来的目标就是通过有限的算力进行大模型微调，引用《QLORA: Efficient Finetuning of Quantized LLMs》这篇论文，采用其中作者发布到github上的开源代码，对Llama2模型进行微调。</p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
       
       
       <categories>
@@ -138,16 +168,22 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 大模型微调 </tag>
+            
+        </tags>
+      
     </entry>
     
     
     
     <entry>
-      <title>第八组</title>
-      <link href="/2023/10/25/GroupEight/"/>
-      <url>/2023/10/25/GroupEight/</url>
+      <title>Predicting Human Scanpaths in Visual Question Answering</title>
+      <link href="/2023/10/25/GroupSeven/"/>
+      <url>/2023/10/25/GroupSeven/</url>
       
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>Predicting Human Scanpaths in Visual Question Answering<br>在视觉问答中预测人类的视觉扫描路径</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>利用深度学习方法预测在视觉问答（VQA）中不同的扫描路径。</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>孟令琦 肖博雅 董一</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="1-干什么"><a href="#1-干什么" class="headerlink" title="1.干什么"></a>1.干什么</h4><p>利用深度学习方法预测在视觉问答（VQA）中不同的扫描路径。<br>在有任务引导时，生成的扫描路径有所差异。<br>此模型预测视觉问答中人类行为的时空模型，如路径、持续时间和顺序，并推广到自由观看和视觉搜索任务。</p><h4 id="2-深度学习模型"><a href="#2-深度学习模型" class="headerlink" title="2.深度学习模型"></a>2.深度学习模型</h4><p>CovnLSTM（长短时记忆网络模型）</p><h4 id="3-训练方法"><a href="#3-训练方法" class="headerlink" title="3.训练方法"></a>3.训练方法</h4><p>利用正确和错误两种不同的扫描路径进行训练。</p><h4 id="4-流程"><a href="#4-流程" class="headerlink" title="4.流程"></a>4.流程</h4><p><img src="/images/7/1-1.png"></p><h4 id="5-达到效果"><a href="#5-达到效果" class="headerlink" title="5.达到效果"></a>5.达到效果</h4><p>输入图片后，输出预测的人类对该图片观察的路径、顺序和持续时间。</p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
       
       
       <categories>
@@ -157,16 +193,22 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 在视觉问答中预测人类的视觉扫描路径 </tag>
+            
+        </tags>
+      
     </entry>
     
     
     
     <entry>
-      <title>第六组</title>
-      <link href="/2023/10/24/GroupSix/"/>
-      <url>/2023/10/24/GroupSix/</url>
+      <title>Predicting Goal-directed Human Attention Using Inverse Reinforcement Learning</title>
+      <link href="/2023/10/24/GroupEight/"/>
+      <url>/2023/10/24/GroupEight/</url>
       
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>Predicting Goal-directed Human Attention Using Inverse Reinforcement Learning<br>使用逆强化学习预测目标导向的人类注意力</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>预测人类凝视行为对于行为视觉和计算机视觉应用</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>于洋 娄之茵</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="论文题目"><a href="#论文题目" class="headerlink" title="论文题目"></a>论文题目</h4><p><img src="/images/8/1-1.png"><br>文献基本信息：本文要预测人类凝视行为对于行为视觉和计算机视觉应用。在图像分类、目标检测和图像分割等任务中，逆向强化学习框架能提高模型性能。它模拟观察者的真实注视模式，使模型更关注图像的重要区域，从而提高准确性和效率。逆向强化学习框架也可应用于自然语言处理、语音识别等领域。在这些领域中，任务常涉及序列数据的处理和建模，而逆向强化学习框架提供了一种有效的序列建模方法。</p><h4 id="研究什么："><a href="#研究什么：" class="headerlink" title="研究什么："></a>研究什么：</h4><p>据我们所知，人类视觉注意力有两种形式：<br>1.自下而上的基于视觉输入处理<br>这种形式的注意力通常是由外部刺激引起的，例如颜色、形状、大小等。它基于图像的特征进行注意力的分配，不需要任何先验知识或目标导向。<br>2.自上而下的基于优先级处理<br>这种形式的注意力通常是由内部目标或任务驱动的。它根据个体的经验、目标和意图，对图像的不同区域进行优先级的分配，从而引导注意力的定向。<br>当您的食物到达餐厅时，您的第一个动作注意力可能会集中在叉子和刀子上，因为这些物品对于您的晚餐目标很重要。<br><img src="/images/8/1-2.png"></p><h4 id="要做什么：预测出人类注意力扫描路径。"><a href="#要做什么：预测出人类注意力扫描路径。" class="headerlink" title="要做什么：预测出人类注意力扫描路径。"></a>要做什么：预测出人类注意力扫描路径。</h4><p>视觉搜索中的注视预测。目的是预测人们在观看图像时的注视模式。这些模式可以是空间（注视密度图）或空间+时间（扫描路径）。大多数注视预测模型都是在自由观看任务的背景下进行的。</p><h4 id="IRL模型-一种模仿学习："><a href="#IRL模型-一种模仿学习：" class="headerlink" title="IRL模型  一种模仿学习："></a>IRL模型  一种模仿学习：</h4><p>逆向强化学习是一种通过观察行为并推断出产生这些行为的奖励函数的方法。在搜索预测中，我们可以利用逆向强化学习从观察者的行为中学习他们的搜索策略，并预测他们未来的搜索行为。那逆强化学习和强化学习有什么区别呢？强化学习主要应用于机器人控制、游戏等领域，其中智能体需要在动态环境中自主学习和决策。逆强化学习更适用于从人类行为中学习，例如模仿学习、行为理解等。强化学习是通过试错的方式学习最优策略，而逆向强化学习则是通过观察行为并推断出奖励函数，进而推断出最优策略。通俗来讲，与传统的强化学习相比，逆强化学习多了一个解释性的角度，即不仅要做出正确的动作，还要理解为什么要这么做。<br><img src="/images/8/1-3.png"><br><img src="/images/8/1-4.png"><br><img src="/images/8/1-5.png"></p><h4 id="Dynamic-Contextual-Belief-DCB-："><a href="#Dynamic-Contextual-Belief-DCB-：" class="headerlink" title="Dynamic-Contextual-Belief (DCB)："></a>Dynamic-Contextual-Belief (DCB)：</h4><p>动态上下文信念（DCB）：DCB包含观察者状态、任务上下文、图像特征等要素，有三个组成部分1.1) Fovea（中央凹：中央凹之外的视觉输入分辨率较低，模糊程度取决于周边观察输入与中央凹之间的距离。）2.情境信念3.动态（指每次注视后发生的状态表示的变化）。<br>这些在观察者的注视过程中不断积累和更新，指导其下一步的注视位置。基于逆向强化学习进行更新。比较实际与预测的注视位置，并考虑任务上下文和图像特征，持续更新DCB状态。<br><img src="/images/8/1-6.png"><br><img src="/images/8/1-7.png"></p><h4 id="数据集："><a href="#数据集：" class="headerlink" title="数据集："></a>数据集：</h4><p>COCO-Search18数据集，提供了大规模、多样化的数据集，用于研究目标导向的注意力机制。模拟人类视觉搜索过程，有助于理解人类注意力分配方式，并在计算机视觉系统中实现类似功能。标注的信息包括每个人在寻找目标物体时的注视位置、时间，以及完成任务的成功率。在实验设置中，我们使用了COCO-Search18数据集，该数据集包含了10个人在寻找18个目标物体时的标注信息。我们基于这些标注信息，利用逆向强化学习算法，训练了一个预测模型，该模型可以预测人类在寻找特定目标时的注视模式。<br>COCO-Search18数据集用在标准目标存在（TP）或目标不存在（TA）搜索任务期间进行的人类注视来注释COCO，其中在每次试验中，搜索图像要么描绘目标（TP）要么没有明显目标（TA）。<br><img src="/images/8/1-8.png"></p><h4 id="Reward-and-Policy-Learning"><a href="#Reward-and-Policy-Learning" class="headerlink" title="Reward and Policy Learning"></a>Reward and Policy Learning</h4><p>我们使用生成对抗模仿学习（GAIL）来学习视觉搜索行为的奖励函数和策略。GAIL是一个带有判别器和生成器的对抗框架。该策略是生成器，旨在生成类似于人类行为的状态-动作对。奖励函数将状态-动作对映射为数值，并且该函数被公式化为鉴别器输出的对数。<br>生成器的作用：通过采样图像和任务中的眼动，生成假状态动作对，用于辨别器进行学习和预测。这些假状态动作对基于逆向强化学习框架生成，模拟观察者的真实注视过程。欺骗判别器。<br>辨别器的作用：通过区分真假状态动作对，学习并预测观察者的真实注视模式。利用生成器提供的假状态动作对和观察者真实的眼动数据，比较真假数据差异，不断优化预测能力。辨认出生成器生成的动作对和真实的数据。<br>在训练过程中，生成器和辨别器相互交互和迭代，共同优化整个逆向强化学习框架的性能。</p><h4 id="贡献以及意义："><a href="#贡献以及意义：" class="headerlink" title="贡献以及意义："></a>贡献以及意义：</h4><p>提出了一种预测搜索定点扫描路径的新模型，该模型使用 IRL 来联合恢复人们在视觉搜索过程中使用的奖励函数和策略。IRL 模型使用了一种新颖且具有高度解释能力的状态表示法–动态上下文信念（DCB），DCB 会更新对物体的信念，以获得随每次新的定点而动态变化的物体上下文。<br>IRL模型  (i) 了解对象的场景上下文； (ii) 泛化以预测新受试者 的行为，(iii) 与其他模型相比，需要更少的数据来实现良好的性能。<br>最后，我们学习了如何量化搜索任务中注视点的奖励函数。这将使新一波的实验研究成为可能，最终将更好地理解目标导向的注意力。<br>对行为视觉文献产生了影响，因为对于真实图像来说，引导人类目标导向型注意力的视觉特征仍然鲜为人知。</p><h4 id="想要完成的："><a href="#想要完成的：" class="headerlink" title="想要完成的："></a>想要完成的：</h4><p>模型实现（<a href="https://github.com/cvlab-stonybrook/Scanpath_Prediction%EF%BC%89%EF%BC%9A">https://github.com/cvlab-stonybrook/Scanpath_Prediction）：</a><br>1.必要的库和模块：<br>·detectron2：一个用于目标检测和语义分割的库。<br>·torch：PyTorch 是一个流行的深度学习框架，用于构建神经网络模型和进行数值计算。<br>·tqdm：一个用于在命令行界面中显示进度条的库，提供了一种更直观的方式来监控长时间运行的任务。<br>·tensorboard：TensorBoard 是 TensorFlow 生态系统中的一部分，用于可视化模型训练过程中的各种指标和数据。<br>·torchvision：这是 PyTorch 的视觉处理库，提供了常见的图像预处理、数据加载和模型架构。<br>·numpy：Numerical Python 是一个用于科学计算的基础库，提供了多维数组和矩阵操作的功能。<br>·scipy：Scientific Python 是一个用于数值计算和科学分析的库，包含了各种数学、统计和优化函数。<br>·pillow：Pillow 是 Python 中常用的图像处理库，用于图像的读取、编辑和保存。<br>·docopt：用于解析命令行参数的库，使得编写命令行工具更加简单。<br>·scikit-image：一个用于图像处理和分析的库，提供了丰富的图像变换和算法。<br>2.使用以下命令训练模型：<br>python train.py <hparams> <dataset_root> [–cuda=<id>]<br>绘制扫视路径的命令：<br>python plot_scanpath.py –fixation_path <fixation_file_path> –image_dir <image_dir><br>3.如何使用已经训练好的模型为新图像生成扫描路径（不在 COCO-Search18 中）<br>[1]计算 DCB<br>运行文件中的extract_DCBs_demo.py<br>主程序部分：<br>·加载预训练的模型和配置。<br>·根据配置构建骨干网络并将其移动到指定设备（cuda）。<br>·设置模型权重并进行评估模式。<br>·使用给定的图像路径和预测器计算高对比度和低对比度的特征。<br>·打印特征的形状。<br>遇到的问题：detectron2的安装（已解决）<br>运行代码后的结果：？<br><img src="/images/8/1-9.png"><br>[2]运行作者在github中给出的代码<br><img src="/images/8/1-10.png"><br><font color="red" size="4"> 遇到的问题：checkpoint_dir是什么 </font> </image_dir></fixation_file_path></id></dataset_root></hparams></p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
       
       
       <categories>
@@ -176,16 +218,22 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 使用逆强化学习预测目标导向的人类注意力 </tag>
+            
+        </tags>
+      
     </entry>
     
     
     
     <entry>
-      <title>第九组</title>
+      <title>OOD</title>
       <link href="/2023/10/23/GroupNine/"/>
       <url>/2023/10/23/GroupNine/</url>
       
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>OOD<br>分布外</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>改进机器学习系统在处理分布外数据（OOD）时的性能，提高模型的鲁棒性，使其能够更好地适应和泛化到未见过的数据。</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>王月仙 邹芳冉</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="一、论文研究与理解"><a href="#一、论文研究与理解" class="headerlink" title="一、论文研究与理解"></a>一、论文研究与理解</h4><p>1、研究背景<br>人们对于机器学习系统在分布外数据（OOD）上的推广能力越来越感兴趣。然而在优化过程中 OOD 目标和 ERM 之间往往存在着冲突，需要在 OOD 目标和经验风险最小化（ERM）之间做出妥协，这可能会削弱模型的鲁棒性。<br>OOD：模型能够在分布外的数据上表现良好而设定的优化目标。<br>ERM:指在面临不确定性和风险的情况下，通过积累经验和应用经验来减少可能得损失和负面影响。<br>OOD 与 ERM 之间的冲突：<br>（1）数据范围不同，ERM 的优化模型实在已有的数据上的性能，OOD 实在没见过的数据上的性能<br>（2）过拟合风险，为了最小化 ERM，模型会过度你和训练数据集，导致对未见过的数据上的表现不佳，无法泛化。<br>（3）数据偏差，训练数据和测试数据很难保证一致性<br>2、研究目的<br>改进机器学习系统在处理分布外数据（OOD）时的性能，提高模型的鲁棒性，使其能够更好地适应和泛化到未见过的数据。解决在优化过程中出现的妥协问题，提高模型在 OOD 数据上的性能，并取得更好的鲁棒性和泛化能力。<br>3、解决的问题<br>在优化过程中往往需要在 OOD 目标和经验风险最小化（ERM）之间做出妥协，这可能会削弱模型的鲁棒性，导致次优性能的问题。<br>4、使用的方法<br>帕累托不变风险最小化（PAIR）的新型优化方案，提出了一个新的优化器PAIR-o 和一个新的模型选择标准 PAIR-s 来缓解这一困境。PAIR 通过与其他 OOD目标协同优化来提高鲁棒性，同时适当权衡 ERM 和 OOD 目标，接近帕累托最优解。<br>5、结论<br>PAIR 在挑战性基准测试中取得了最高的 OOD 性能。从 MOO 的角度对 OOD泛化中的优化困境进行了新的理解，并将 OOD 优化的失败归因于宽松 OOD 目标的鲁棒性受损和不可靠的优化方案。强调了权衡 ERM 和 OOD 目标的重要性，并提出了一个新的优化器 PAIR-o 和一个新的模型选择标准 PAIR-s 来缓解这一困境。提供广泛的理论和实证证据来证明正确处理 ERM 和 OOD 权衡的必要和重要性。<br>6、总结与展望<br>随着深度学习模型在现实世界中的广泛应用，对模型在未见过的数据上的泛化能力和鲁棒性的需求也越来越高。OOD 技术可以帮助识别模型在测试时遇到的未知数据，从而提高模型的安全性、可靠性和实用性。未来，我们可能会看到OOD 技术在计算机视觉、自然语言处理、智能机器人自动驾驶、医疗诊断、金融风险管理等领域得到更广泛的应用，以确保深度学习模型在复杂环境中的稳健性和可靠性。通过进一步探索和改进 PAIR 的方法，可以期望在处理分布外数据的任务中取得更好的结果。随着对 OOD 问题的深入研究和不断的改进，机器学习系统在未知领域和新数据上展现出更高的鲁棒性和泛化能力，为实际应用带来更大的效益和可靠性</p><h4 id="二、项目准备"><a href="#二、项目准备" class="headerlink" title="二、项目准备"></a>二、项目准备</h4><p>在这个月内我们进行了环境配置的相关工作：<br>⚫ 安装 Anaconda<br><img src="/images/9/1-1.png"><br>⚫ 配置 Anaconda 的环境变量和 Anaconda 虚拟环境<br><img src="/images/9/1-2.png"><br>⚫ 设置 Jupyter Notebook<br><img src="/images/9/1-3.png"><br>⚫ 安装 GPU 版本的 PyTorch 库<br><img src="/images/9/1-4.png"><br><img src="/images/9/1-5.png"></p><h4 id="三、代码初步理解"><a href="#三、代码初步理解" class="headerlink" title="三、代码初步理解"></a>三、代码初步理解</h4><p>我们对部分代码进行了逐行逐块的分析与理解，例如：<br><img src="/images/9/1-6.png"><br><img src="/images/9/1-7.png"></p><h4 id="四、总结与展望"><a href="#四、总结与展望" class="headerlink" title="四、总结与展望"></a>四、总结与展望</h4><p>以上是我们这一阶段所做的工作，下一阶段我们将会继续分析代码，弄清楚各个 py 文件之间的联系，梳理网络框架和神经网络模型，并开始尝试运行代码</p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
       
       
       <categories>
@@ -194,6 +242,162 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 分布外 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MotorControlLearning/SaccadeVR-mobile</title>
+      <link href="/2023/10/22/GroupTen/"/>
+      <url>/2023/10/22/GroupTen/</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>MotorControlLearning/SaccadeVR-mobile<br>基于VR设备的眼动数据采集</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>利用VR技术所创造的沉浸式环境的优势，将基于视频的眼动跟踪技术与基于HMD的VR技术相结合，提高对眼球运动评估的准确率。</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>叶蕾 肖芸 佟田润</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="一、研究主题与目的"><a href="#一、研究主题与目的" class="headerlink" title="一、研究主题与目的"></a>一、研究主题与目的</h4><p>1.1研究目的<br>（由论文MotorControlLearning/SaccadeVR-mobile）我们小组认为，可以利用VR技术所创造的沉浸式环境的优势，将基于视频的眼动跟踪技术与基于HMD的VR技术相结合，提高对眼球运动评估的准确率。因此，研究旨在研究一种组合设备HTC VIVE Pro Eye，以便将其用于对眼球运动轨迹的评估。<br>1.2研究内容概况<br>(1)利于unity平台和VIVE PRO Eye采集VR数据<br>(2)将采集后的数据在pytorch进行预处理和图像分类<br><img src="/images/9/1-1.png" alt="图 1 整个VR眼动采集+处理流程"></p><h4 id="二、研究设备与环境"><a href="#二、研究设备与环境" class="headerlink" title="二、研究设备与环境"></a>二、研究设备与环境</h4><p>2.1数据采集研究设备<br>HTC 公司推出了一款新的虚拟现实（VR）头戴式设备 VIVE Pro Eye，将基于红外线的眼球跟踪技术与VR技术结合在一起。<br><img src="/images/9/1-2.png" alt="图 2 VIVE Pro Eye设备"><br>测量系统使用了以下软件：<br>Unity:2019.2.5f1<br>Steam VR：1.11.11<br>SRanipal:由HTC提供的眼球跟踪软件开发工具包(SDK)：1.1.0.1<br>SR Runtim 1.1.2.0&lt;更新于2023-08-18&gt;.<br>我们确认该系统还可与以下更新软件版本配合使用。<br>眼部和面部跟踪SDK：1.3.6.8<br>SR运行时：1.3.6.11<br>眼部摄像头：2.41.0-942e3e<br>(在设置VIVE Pro Eye时下载了steamVR）<br>2.2数据处理所需环境和库<br>环境：Pycharm、IDLE<br>库：NumPy、Pandas、Pytorch等<br><img src="/images/9/1-3.png" alt="图 3 库"><br><img src="/images/9/1-4.png" alt="图 4 库"></p><h4 id="三、目前进度汇报"><a href="#三、目前进度汇报" class="headerlink" title="三、目前进度汇报"></a>三、目前进度汇报</h4><p><img src="/images/9/1-5.png" alt="图 5 采集概况"><br>目前已采集100张VR眼动图片数据，这里以2张及采集数据为例展示：<br><img src="/images/9/1-6.png" alt="图 6 眼动图片1"><br>(574.14, 693.87)(643.16, 538.28)(373.44, 525.74)<br>(574.82, 693.43)(663.79, 534.41)(155.50, 580.90)<br>(560.55, 692.38)(659.09, 533.25)(109.57, 594.00)<br>(533.87, 690.68)(656.45, 531.01)(117.89, 589.72)<br>(471.25, 685.39)(656.17, 530.85)(123.96, 585.73)<br>(465.10, 684.52)(654.45, 529.77)(137.37, 581.80)<br>(465.79, 684.13)(648.13, 530.62)(150.61, 579.15)<br>(484.69, 686.30)(646.61, 530.04)(185.15, 570.21)<br>(505.07, 688.17)(643.83, 531.00)(200.44, 565.74)<br>(536.22, 690.91)(635.90, 536.22)(215.03, 561.07)<br>(573.13, 694.22)(625.10, 533.07)(232.84, 555.91)<br>(584.35, 694.97)(621.14, 532.51)(238.01, 555.24)<br>(584.87, 694.15)(620.72, 531.77)(238.07, 553.35)<br>(588.50, 694.04)(625.90, 528.20)(235.80, 554.82)<br>(588.25, 693.35)(634.59, 526.18)(235.75, 556.49)<br>(590.72, 692.81)(642.16, 526.30)(236.23, 555.59)<br>(595.03, 692.46)(640.00, 525.27)(237.17, 554.84)<br>(595.63, 692.59)(635.45, 523.78)(241.13, 553.10)<br>(595.42, 694.08)(632.65, 524.39)(244.93, 553.77)<br>(574.38, 626.13)(659.83, 521.04)(255.76, 547.77)<br>(532.26, 594.53)(681.44, 518.73)(257.68, 547.61)<br>(499.05, 572.67)(700.53, 519.33)(254.65, 549.66)<br>(484.41, 542.33)(718.25, 516.74)(243.90, 550.03)<br>(489.09, 534.05)(716.82, 512.79)(236.01, 550.68)<br>(475.18, 529.08)(677.42, 510.52)(231.30, 552.87)<br>(479.50, 536.23)(647.83, 514.61)(247.90, 547.43)<br>(473.94, 534.67)(629.65, 512.13)(265.25, 543.28)<br>(484.42, 535.42)(726.27, 505.93)(381.41, 524.84)<br>(365.79, 518.70)(733.61, 507.00)(380.56, 527.09)<br>(405.94, 524.83)(743.78, 504.62)(381.19, 526.77)<br>(417.45, 525.81)(753.91, 495.49)(380.86, 525.89)<br>(437.02, 527.88)(568.75, 526.54)(387.62, 504.54)<br>(451.99, 530.20)(386.33, 549.38)(397.21, 531.24)<br>(457.98, 531.54)(263.69, 488.62)(448.68, 524.48)<br>(468.28, 530.22)(168.48, 450.81)(352.19, 544.72)<br>(468.95, 530.79)(175.07, 432.31)(449.36, 563.72)<br>(469.87, 530.71)(199.60, 420.15)(529.83, 528.17)<br>(451.24, 532.79)(189.28, 433.15)(595.38, 516.72)<br>(430.93, 528.34)(203.35, 423.18)(600.82, 533.81)<br>(411.09, 525.96)(382.88, 467.06)(621.57, 526.17)<br>(390.62, 525.22)(382.06, 467.03)(622.37, 537.17)<br>(387.42, 525.36)(398.44, 471.47)(608.71, 531.07)<br>(383.57, 527.37)(413.88, 474.50)(714.04, 515.03)<br>(375.99, 526.70)(431.60, 476.90)(813.15, 520.90)<br>(361.57, 523.58)(435.05, 476.84)(807.26, 529.13)<br>(342.42, 523.41)(442.70, 476.79)(799.77, 517.24)<br>(314.65, 521.66)(443.33, 476.82)(737.89, 520.02)<br>(312.73, 522.73)(445.36, 477.70)(641.35, 521.01)<br>(317.31, 525.98)(443.12, 474.60)(625.45, 514.52)<br>(353.50, 528.61)(444.01, 470.06)(617.70, 512.62)<br>(514.69, 541.21)(448.35, 471.48)(617.75, 507.36)<br>(512.64, 527.17)(447.73, 468.89)(795.18, 523.74)<br>(678.55, 548.65)(449.81, 470.25)(799.74, 523.27)<br>(749.56, 520.77)(448.55, 470.61)(802.29, 525.45)<br>(560.36, 539.59)(421.84, 468.18)(806.23, 527.59)<br>(530.53, 545.55)(410.80, 448.69)(807.37, 529.70)<br>(545.79, 547.48)(386.98, 475.27)(808.17, 531.66)<br>(547.33, 542.53)(379.76, 510.79)(789.88, 515.70)<br>(549.32, 542.27)(373.02, 523.66)<br>(713.02, 528.65)(369.40, 526.19)<br><img src="/images/9/1-7.png" alt="图 7 眼动图片2"><br>(357.97, 645.63)(524.28, 530.84)(139.19, 602.80)<br>(357.93, 645.64)(322.83, 521.95)(168.36, 602.75)<br>(357.34, 644.24)(300.19, 519.86)(198.60, 623.35)<br>(358.09, 646.92)(298.60, 517.96)(386.32, 562.33)<br>(421.21, 638.01)(297.46, 515.18)(387.99, 553.03)<br>(420.54, 638.03)(298.67, 514.08)(374.82, 556.01)<br>(401.56, 607.01)(314.59, 516.02)(314.93, 568.27)<br>(596.51, 617.50)(395.91, 521.34)(269.29, 577.40)<br>(600.65, 612.69)(407.30, 521.11)(269.82, 578.86)<br>(605.60, 645.73)(406.80, 520.40)(236.98, 582.68)<br>(589.66, 636.86)(406.49, 519.51)(222.37, 587.78)<br>(589.04, 600.68)(407.95, 516.76)(234.64, 583.66)<br>(577.26, 580.76)(416.93, 515.79)(263.55, 576.07)<br>(581.96, 634.40)(438.67, 515.31)(383.56, 550.99)<br>(589.60, 628.39)(446.94, 517.91)(400.63, 552.30)<br>(593.34, 639.35)(451.41, 519.85)(399.53, 547.45)<br>(547.00, 620.76)(450.38, 521.65)(400.28, 548.92)<br>(534.48, 613.40)(435.97, 521.41)(405.20, 548.06)<br>(517.14, 584.80)(424.52, 520.68)(404.73, 547.94)<br>(249.60, 653.68)(419.41, 523.00)(380.30, 556.97)<br>(262.54, 634.76)(328.38, 479.62)(237.04, 589.69)<br>(275.55, 617.70)(313.70, 461.67)(246.20, 586.94)<br>(281.44, 625.42)(536.53, 436.57)(261.75, 584.18)<br>(285.46, 632.02)(540.97, 384.55)(288.69, 577.23)<br>(337.07, 613.78)(537.71, 390.33)(295.47, 577.16)<br>(522.73, 562.93)(545.68, 385.28)(293.91, 574.95)<br>(522.96, 563.79)(545.40, 376.27)(280.46, 577.27)<br>(523.40, 563.31)(557.39, 376.70)(272.27, 578.91)<br>(529.10, 559.97)(557.09, 371.17)(260.93, 580.23)<br>(525.56, 563.93)(567.31, 385.76)(244.85, 580.93)<br>(505.92, 556.01)(563.11, 382.48)(241.06, 582.86)<br>(388.44, 604.90)(543.12, 379.48)(240.99, 582.96)<br>(336.32, 625.65)(333.92, 377.55)(242.76, 582.89)<br>(282.28, 643.31)(292.88, 376.38)(244.60, 582.50)<br>(307.66, 658.97)(290.79, 377.83)(245.23, 581.76)<br>(376.14, 600.09)(293.40, 379.26)(298.70, 572.13)<br>(451.79, 562.19)(300.25, 386.05)(190.72, 552.65)<br>(486.19, 536.60)(302.04, 389.13)(319.01, 543.89)<br>(484.65, 533.05)(315.12, 392.73)(440.73, 542.68)<br>(610.54, 517.17)(345.54, 391.56)(447.97, 554.39)<br>(699.25, 511.48)(402.20, 388.90)(468.50, 544.94)<br>(692.16, 514.77)(428.40, 386.80)(459.98, 530.04)<br>(506.62, 549.65)(427.86, 387.21)(471.14, 533.25)<br>(477.21, 558.69)(431.91, 387.21)(596.86, 526.35)<br>(498.50, 554.03)(432.71, 386.84)(679.44, 514.44)<br>(687.44, 517.82)(430.12, 387.03)(613.08, 522.53)<br>(696.06, 516.64)(427.60, 387.68)(652.80, 516.61)<br>(710.15, 518.46)(425.93, 388.15)(672.16, 510.48)<br>(683.56, 512.31)(430.54, 388.02)(621.88, 522.22)<br>(606.25, 522.94)(432.69, 385.33)(488.20, 539.20)<br>(588.09, 508.86)(484.58, 377.94)(496.53, 536.97)<br>(621.81, 508.74)(524.89, 376.85)(520.19, 534.68)<br>(538.31, 501.98)(548.53, 364.81)(564.83, 532.61)<br>(336.23, 521.72)(528.93, 386.79)(527.86, 540.72)<br>(296.59, 505.43)(479.80, 409.39)(499.38, 542.90)<br>(292.45, 524.79)(400.06, 453.70)(465.89, 547.74)<br>(308.48, 518.94)(166.38, 563.46)(462.86, 545.84)<br>(310.28, 531.24)(103.58, 633.66)(472.87, 543.01)<br>(516.88, 515.13)(122.64, 591.53)<br><img src="/images/9/1-8.png" alt="图 8 涉及到的一些数据处理代码"></p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小组作业 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基于VR设备的眼动数据采集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>A Deep Reinforcement Learning Approach to Supply Chain Inventory Management</title>
+      <link href="/2023/10/21/GroupEleven/"/>
+      <url>/2023/10/21/GroupEleven/</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>A Deep Reinforcement Learning Approach to Supply Chain Inventory Management<br>基于深度强化学习的解决库存管理和价格优化问题</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>此项目是基于深度强化学习的解决库存管理和价格优化问题</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>邓方昱 李秋洁 李蕊</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><p>此项目是基于深度强化学习的解决库存管理和价格优化问题</p><p>论文中先讨论了如何对传统价格优化问题进行修改以增加优化的复杂性</p><p>接下来在简单环境中通过DQN算法进行价格优化 通过DDPG进行多级库存优化</p><p>然后讨论了如何使用RLlib（基于深度强化学习的开源库）简化代码并使其更健壮</p><p>最后开发一个更复杂的环境（一个工厂，仓库和运输）并在其中进行深度强化学习</p><p>我们组了解了深度强化学习与深度学习的具体差别：它介于完全监督和完全没有预定义标签之间，会用到很多已经比较完善的监督学习方法来学习数据的表示（比如用深度神经网络来进行函数逼近、随机梯度下降和反向传播）它也不像非监督学习那样完全不需要其他信息，而是需要奖励系统（通过观察奖励并将其与选择的动作关联起来，智能体将学习如何更好地选择动作）</p><p>同时了解了深度强化学习涉及的几个概念：智能体 环境 动作 奖励 观察</p><p>接下来需要将论文以及代码看懂 并学会如何通过RLlib对代码进行优化</p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小组作业 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 基于深度强化学习的解决库存管理和价格优化问题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Using neural networks to solve differential equation</title>
+      <link href="/2023/10/20/GroupTwelve/"/>
+      <url>/2023/10/20/GroupTwelve/</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>Using neural networks to solve differential equation<br>利用神经网络求解微分方程</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>利用神经网络求解微分方程</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>陈敏华 司笑雨</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><p>偏微分方程实例如下：<br><img src="/images/12/1-1.png"></p><p>考虑以下边界条件：<br><img src="/images/12/1-2.png"></p><p>求解思路：<br>1、设定基础参数<br>2、通过设置函数计算不同位置(中心位置和边界位置)的函数值<br>3、建立神经网络(MPL网络)<br>4、利用神经网络和已知的函数值建立误差函数，用于获得误差<br>5、调用pytorch函数进行训练迭代<br>6、查看结果</p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小组作业 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 利用神经网络求解微分方程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>DDPM</title>
+      <link href="/2023/10/19/GroupThirteen/"/>
+      <url>/2023/10/19/GroupThirteen/</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>DDPM<br>扩散模型</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>扩散模型是一种生成模型，实现从噪声（采样自标准正态分布）生成目标数据样本。 </p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>张菁芝 秦越 邹睿</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="一、原理介绍："><a href="#一、原理介绍：" class="headerlink" title="一、原理介绍："></a>一、原理介绍：</h4><p>扩散模型是一种生成模型，实现从噪声（采样自标准正态分布）生成目标数据样本。<br>扩散模型包括两个过程：前向过程（forward process）和反向过程（reverse process）。<br><img src="/images/13/1-1.png"><br>前向过程也就是加噪过程，即上图中的到的过程，我们向原始图像中逐步添加高斯噪声，并且后一时刻都是由前一时刻添加噪声得到的，这样我们就得$x_1x_2······x_{t-1}x_T$，其中$x_T$就是一个完全的高斯噪声。前向过程存在的意义就是帮助神经网络去训练逆向过程，也即前向过程中得到的噪声就是一系列标签，根据这些标签，逆向过程在去噪的时候就知道噪音是怎么加进去的，进而进行训练，正向过程对应网络的训练过程。<br>反向过程也就是去噪过程，即上图中到的过程。我们从标准正态分布采样的高斯噪声$x_T$逐步对其去噪，得到是没有噪声的的图像。逆向过程对应网络的推理过程。</p><h4 id="二、公式推导："><a href="#二、公式推导：" class="headerlink" title="二、公式推导："></a>二、公式推导：</h4><p>1.前向过程：<br>加噪过程主要符合以下公式：<br>$x_t = \sqrt{\alpha_t}x_{t-1} + \sqrt{1-\alpha_t}z_1$<br>其中\sqrt{\alpha_t}是预先设定好的超参数<br>通过迭代推导<br>$x_{t-1} = \sqrt{\alpha_{t-1}}x_{t-2} + \sqrt{1-\alpha_{t-1}}z_2$<br>$x_t = \sqrt{\alpha_t}(\sqrt{\alpha_t}x_{t-1} + \sqrt{1-\alpha_t}z_1) + \sqrt{1-\alpha_t}z_1$<br>     $= \sqrt{\alpha_t\alpha_{t-1}}x_{t-2} + (\sqrt{\alpha_t(1-\alpha_{t-1})}z_2 + \sqrt{1-\alpha_t}z_1)$<br>其中，$z_1$,$z_2$都服从高斯分布，分别为：<br>N（0，$1-\alpha_t$）<br>N（0，$\alpha_t(1-\alpha_{t-1})$)<br>由N（0，$\sigma_1^2I$）+N（0，$\sigma_2^2I$）~N（0，$(\sigma_1^2 + \sigma_2^2)I$）得，相加后仍服从高斯<br>$x_t = \sqrt{\overline{\alpha_t}}x_0 + \sqrt{1-\overline{\alpha_t}}z_t$<br>其中$\overline{\alpha_t}=\prod_i^t\alpha_i$，这是随Noise schedule设定好的超参数，$z_{t-1}∼N(0,1)$也是一个高斯噪声。通过上述两个公式，我们可以不断的将图片进行破坏加噪<br><img src="/images/13/1-2.png"><br><img src="/images/13/1-3.png"><br>我们通过往图片中加入噪声，使得图片变得模糊起来，当加的步骤足够多的时候，图片会非常接近一张纯噪声。纯噪声也就意味着多样性，我们的模型在去噪的过程中能够产生更加多样的图片。<br>2.反向过程：<br>反向过程就是通过估测噪声，多次迭代，逐渐将被破坏的$x_t$恢复成$x_0$。<br>根据贝叶斯公式，已知$x_t$反推$x_{t-1}$：<br>$q(x_{t-1}|x_t,x_0) = q(x_t|x_{t-1},x_0)$${q(x_{t-1}|x_0)}\over{q(x_t|x_0)}$</p><p>${q(x_{t-1}|x_0)} = x_t = \sqrt{\overline\alpha_{t-1}}x_0 + \sqrt{1-\overline{\alpha_{t-1}}}z$</p><p>${q(x_t|x_0)} = x_t = \sqrt{\overline\alpha_t}x_0 + \sqrt{1-\overline{\alpha_t}}z$</p><p>$q(x_{t-1}|x_t,x_0) = \sqrt{\alpha_t}x_{t-1} + \sqrt{1-\alpha_t}z $<br>最终得到：<br>$x_{t-1} = $$1\over\alpha_t$$(x_t-$${1-\alpha_t}\over{\sqrt{1-\overline\alpha_t}}$$\epsilon_{\theta}(x_t,t) + {\sigma}_tz$<br>由于加噪过程中的真实噪声在复原过程中是无法获得的，因此DDPM的关键就是训练一个由$x_t$和$t$估测噪声的模型$\epsilon_0(x_t,t)$,其中$\theta$就是模型的训练参数，${\sigma}_t$也是一个服从标准正态分布的高斯噪声，用于表示估测与实际的差距。在DDPM中，使用U-Net作为估测噪声的模型。<br>本质上，就是训练这个U-net模型，该模型输入为$x_t$和t，输出为时刻的高斯噪声，即利用$x_t$和t预测这一时刻的高斯噪声，这样就可以一步一步的再从噪声回到真实图像。</p><h4 id="三、训练和推理"><a href="#三、训练和推理" class="headerlink" title="三、训练和推理"></a>三、训练和推理</h4><p>模型结构：U-Net<br>模型输入：$x_t$、t<br>模型输出：噪声<br>模型学习目标：不断逆向去掉噪声，让每步逆向预测的噪声$\epsilon_0(x_t,t)$和每步前向添加的噪声尽可能相近$\epsilon$<br>损失函数：<br>Loss=$||{\epsilon-\epsilon_{\theta}(x_t,t)}^2|| = ||{\epsilon-\epsilon_{\theta}(\sqrt{\overline\alpha_t}x_{t-1}+\sqrt{1-\overline\alpha_t}\epsilon,t)}^2||$<br>训练过程：最小化预测噪声和添加的噪声的差距<br>第一步：输入原图$x_0$<br>第二步：生成随机噪声和时间t<br>第三步：对原图加噪，<br>第四步：将加噪的图像和时间向量t输入神经网络模型，预测噪声<br>第五步：计算loss并更新模型<br>推理的过程：<br>从N（0~1）中随机生成一个噪声<br>循环T步逐步去噪，就从噪声恢复得到了原图<br><img src="/images/13/1-4.png"><br><img src="/images/13/1-5.png"><br><img src="/images/13/1-6.png"><br><img src="/images/13/1-7.png"></p><h4 id="四、代码复现"><a href="#四、代码复现" class="headerlink" title="四、代码复现"></a>四、代码复现</h4><p><img src="/images/13/1-8.png"><br><img src="/images/13/1-9.png"><br><img src="/images/13/1-10.png"><br><img src="/images/13/1-11.png"></p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小组作业 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 扩散模型 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Network image denoising</title>
+      <link href="/2023/10/18/GroupFourteen/"/>
+      <url>/2023/10/18/GroupFourteen/</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>Network image denoising<br>网络图像去噪————基于图像遮蔽方法</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>用掩码训练去除图像噪声</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>刘妍 何怡蓉</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="项目具体情况"><a href="#项目具体情况" class="headerlink" title="项目具体情况:"></a>项目具体情况:</h4><p>论文创新方法解决图像去噪问题，不同于传统的基于模型和基于数据驱动方法，采取图像掩码遮蔽方法去除噪声。屏蔽掉一部分输入像素，然后训练深度网络来完成修复。在论文的方法中，使用核大小为 1 的卷积层作为特征嵌入模块，将 3 通道像素值投影到 C 维特征标记中。其中1 * 1 卷积层确保像素在特征嵌入过程中不会相互影响，便于后续的遮蔽操作。主要从两个方面解决去噪问题，输入掩码和注意力掩码。输入掩码随机屏蔽了第一卷积层嵌入的特征标记，并促进网络在训练过程中修复被屏蔽的信息。当训练与真实测试不同时，网络将会通过增加图片亮度来输出图片。因此，还需引入注意力掩码解决问题，可以通过在自我注意力过程中执行相同的掩码操作来缩小训练和测试之间的差距。</p><h4 id="项目流程图"><a href="#项目流程图" class="headerlink" title="项目流程图:"></a>项目流程图:</h4><p><img src="/images/14/1-1.png"></p><h4 id="项目进度："><a href="#项目进度：" class="headerlink" title="项目进度："></a>项目进度：</h4><p>论文翻译完成并相对了解项目的目的及其使用的方法，目前在翻译代码，通过对论文的结合，初步理解代码的作用，目前在细化分析代码的编写逻辑以及配置相关的库。</p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小组作业 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络图像去噪——基于图像遮蔽方法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>BoMD Bag of Multi-label Descriptors for Noisy Chest X-ray Classification</title>
+      <link href="/2023/10/17/GroupFifteen/"/>
+      <url>/2023/10/17/GroupFifteen/</url>
+      
+        <content type="html"><![CDATA[<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>BoMD Bag of Multi-label Descriptors for Noisy Chest X-ray Classification<br>多标签符包胸部X射线分类</p><h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>BoMD通过利用来自BERT模型的词嵌入中包含的标签的语义信息来平滑地重新标记嘈杂的多标签医学图像数据集，用其邻域的估计标签分布重新标记有噪声的标签样本。</p><h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>孙琦 王博艺</p><hr><h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="论文的目标"><a href="#论文的目标" class="headerlink" title="论文的目标"></a>论文的目标</h4><p>在文中提出了一种专为有噪声多标签CXR 学习设计的新方法，该方法可检测并平滑地重新标记数据集中的有噪声样本，以用于普通多标签分类器的训练，该方法优化了一组多标签描述符(BoMD)，以提高它们与多标签图像注释语言模型产生的语义描述符的相似性。（词汇袋(Bag of Words, BoW)方法[15,54,55]是一种传统的信息检索技术，用无序单词的直方图表示文档。在计算机视觉中，BoW[9,54]用无序局部视觉描述符的直方图表示图像，这些描述符以无监督的方式从训练图像中学习。采用BoW概念，但不是提取局部视觉描述符(例如SIFT[38])，而是训练DNN用一袋全局视觉描述符来表示每个图像。）在有噪声多标签训练集和干净测试集上的实验表明，论文中的模型在许多CXR多标签分类基准中具有最先进的准确性和鲁棒性，包括论文中提出的系统评估有噪声多标签方法的新基准。</p><h4 id="为什么研究这个"><a href="#为什么研究这个" class="headerlink" title="为什么研究这个"></a>为什么研究这个</h4><p>深度学习方法(DNN)（因为大规模的人工标记的干净数据集，在医学影像分类有很高的正确率，但是人工成本太高）因此，新的医学影像分类问题可能需要依赖从放射报告中提取的机器生成(NLP)的噪声标签。事实上，许多胸部X射线（CXR）分类器是基于带有噪声标签的数据集建模的，但它们的训练过程通常对噪声标签样本不够稳健，导致模型效果不佳。此外，CXR数据集大多是多标签的，因此当前的多类噪声标签学习方法不能轻易地适应。所以提出了一种新的方法，专为噪声多标签CXR学习而设计，该方法可以检测并平滑地重新标记数据集中的噪声样本，以用于常见的多标签分类器的训练。提出的方法优化了一组多标签描述符 (Multi-label Descriptors), 以促进它们与由语言模型从多标签图像注释中生成的语义描述符的相似性。</p><h4 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h4><p>第一阶段 特征处理器<br>图像描述(image description)学习阶段，将训练图像转换为一组视觉描述符，这些描述符位于由图像标签计算得到的词嵌入所构成的语义空间。<br>第二阶段<br>图构建阶段，用于平滑地重新标记带有噪声的多标签图像，其中每个图像由从学习得到的视觉描述符组成的子图表示，该子图可以捕捉图像之间的细粒度关系。然后，将这个平滑重新标记(smoothly re-labelled)的数据集用于训练多标签分类器。&nbsp;<br>新颖的两阶段学习方法，可平滑地重新标记有噪声的多标签 CXR 图像数据集，然后可用于训练通用的多标签分类器<br>新的多标签图像描述符袋学习方法，可利用语言模型中的语义信息来表示多标签图像并检测噪声样本。<br>新的图结构，用于平滑地重新标记有噪声的多标签图像，每幅图像都由学习到的多标签图像描述符的子图来表示，这种子图可以捕捉细粒度的图像关系。<br>首次对结合了 PadChest 和 Chest Xray 14数据集的噪声多标签方法进行了系统评估。<br><img src="/images/15/1-1.png"><br>BoMD的特征提取器每个图像返回一个描述符v, D是噪声训练集，C是干净集，而~ D是重新标记的训练集。BoMD有两个组成部分：<br>(1)学习一组多标签图像描述符(MID) {v1, v2, v3}来表示图像<br>(2)基于MID描述符之间的细粒度关系，由图结构驱动的图像平滑重新标记。</p><h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小组作业 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 多标签符包胸部X射线分类 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -201,8 +405,8 @@
     
     <entry>
       <title>Hello World</title>
-      <link href="/2023/10/22/hello-world/"/>
-      <url>/2023/10/22/hello-world/</url>
+      <link href="/2023/10/01/hello-world/"/>
+      <url>/2023/10/01/hello-world/</url>
       
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-Start123123"><a href="#quick-Start123123" class="headerlink" title="quick Start123123"></a>quick Start123123</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
@@ -219,25 +423,6 @@
             <tag> Hello World </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>第十组</title>
-      <link href="/2023/10/21/GroupTen/"/>
-      <url>/2023/10/21/GroupTen/</url>
-      
-        <content type="html"><![CDATA[<h2 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h2><h3 id="项目名称-（必填）"><a href="#项目名称-（必填）" class="headerlink" title="项目名称 （必填）"></a>项目名称 <font color="red" size="3">（必填）</font></h3><h3 id="项目简介-（必填）"><a href="#项目简介-（必填）" class="headerlink" title="项目简介 （必填）"></a>项目简介 <font color="red" size="3">（必填）</font></h3><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="小组成员-（必填）"><a href="#小组成员-（必填）" class="headerlink" title="小组成员 （必填）"></a>小组成员 <font color="red" size="3">（必填）</font></h3><h3 id="组员照片-（选填）"><a href="#组员照片-（选填）" class="headerlink" title="组员照片 （选填）"></a>组员照片 <font color="blue" size="3">（选填）</font></h3><h3 id="组员分工-（必填）"><a href="#组员分工-（必填）" class="headerlink" title="组员分工 （必填）"></a>组员分工 <font color="red" size="3">（必填）</font></h3><hr><h2 id="项目进度-（必填，大概一周一次）"><a href="#项目进度-（必填，大概一周一次）" class="headerlink" title="项目进度 （必填，大概一周一次）"></a>项目进度 <font color="red" size="3">（必填，大概一周一次）</font></h2><h3 id="第一周-（图片选填）"><a href="#第一周-（图片选填）" class="headerlink" title="第一周 （图片选填）"></a>第一周 <font color="blue" size="3">（图片选填）</font></h3><h3 id="第二周-（代码选填）"><a href="#第二周-（代码选填）" class="headerlink" title="第二周 （代码选填）"></a>第二周 <font color="blue" size="3">（代码选填）</font></h3>]]></content>
-      
-      
-      <categories>
-          
-          <category> 小组作业 </category>
-          
-      </categories>
-      
       
     </entry>
     

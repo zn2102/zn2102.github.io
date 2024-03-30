@@ -1,0 +1,977 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Predicting Goal-directed Human Attention Using Inverse Reinforcement Learning, wsj020928">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" type="text/css" href="/css/loading.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Predicting Goal-directed Human Attention Using Inverse Reinforcement Learning | 智能科学与技术课程设计</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+
+
+
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    
+  <div id="loading-box">
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+      <div class="configure-border-1">
+        <div class="configure-core"></div>
+      </div>
+      <div class="configure-border-2">
+        <div class="configure-core"></div>
+      </div>
+      <div class="loading-word">加载中...</div>
+    </div>
+  </div>
+  <!-- 页面加载动画 -->
+  <script>
+    $(document).ready(function () {
+      document.body.style.overflow = 'auto';
+      document.getElementById('loading-box').classList.add("loaded")
+    })
+  </script>
+
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">智能科学与技术课程设计</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">智能科学与技术课程设计</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/./images/8/1-0.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Predicting Goal-directed Human Attention Using Inverse Reinforcement Learning</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E4%BD%BF%E7%94%A8%E9%80%86%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E7%9B%AE%E6%A0%87%E5%AF%BC%E5%90%91%E7%9A%84%E4%BA%BA%E7%B1%BB%E6%B3%A8%E6%84%8F%EF%A6%8A/">
+                                <span class="chip bg-color">使用逆强化学习预测目标导向的人类注意力</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B0%8F%E7%BB%84%E4%BD%9C%E4%B8%9A/" class="post-category">
+                                小组作业
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-10-24
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><h3 id="项目名称"><a href="#项目名称" class="headerlink" title="项目名称"></a>项目名称</h3><p>Predicting Goal-directed Human Attention Using Inverse Reinforcement Learning<br>使用逆强化学习预测目标导向的人类注意力</p>
+<h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><p>预测人类凝视行为对于行为视觉和计算机视觉应用</p>
+<h3 id="小组成员"><a href="#小组成员" class="headerlink" title="小组成员"></a>小组成员</h3><p>于洋 娄之茵</p>
+<hr>
+
+<h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="论文题目"><a href="#论文题目" class="headerlink" title="论文题目"></a>论文题目</h4><p><img src="/images/8/1-1.png"><br>文献基本信息：本文要预测人类凝视行为对于行为视觉和计算机视觉应用。在图像分类、目标检测和图像分割等任务中，逆向强化学习框架能提高模型性能。它模拟观察者的真实注视模式，使模型更关注图像的重要区域，从而提高准确性和效率。逆向强化学习框架也可应用于自然语言处理、语音识别等领域。在这些领域中，任务常涉及序列数据的处理和建模，而逆向强化学习框架提供了一种有效的序列建模方法。</p>
+<h4 id="研究什么："><a href="#研究什么：" class="headerlink" title="研究什么："></a>研究什么：</h4><p>据我们所知，人类视觉注意力有两种形式：<br>1.自下而上的基于视觉输入处理<br>这种形式的注意力通常是由外部刺激引起的，例如颜色、形状、大小等。它基于图像的特征进行注意力的分配，不需要任何先验知识或目标导向。<br>2.自上而下的基于优先级处理<br>这种形式的注意力通常是由内部目标或任务驱动的。它根据个体的经验、目标和意图，对图像的不同区域进行优先级的分配，从而引导注意力的定向。<br>当您的食物到达餐厅时，您的第一个动作注意力可能会集中在叉子和刀子上，因为这些物品对于您的晚餐目标很重要。<br><img src="/images/8/1-2.png"></p>
+<h4 id="要做什么：预测出人类注意力扫描路径。"><a href="#要做什么：预测出人类注意力扫描路径。" class="headerlink" title="要做什么：预测出人类注意力扫描路径。"></a>要做什么：预测出人类注意力扫描路径。</h4><p>视觉搜索中的注视预测。目的是预测人们在观看图像时的注视模式。这些模式可以是空间（注视密度图）或空间+时间（扫描路径）。大多数注视预测模型都是在自由观看任务的背景下进行的。</p>
+<h4 id="IRL模型-一种模仿学习："><a href="#IRL模型-一种模仿学习：" class="headerlink" title="IRL模型  一种模仿学习："></a>IRL模型  一种模仿学习：</h4><p>逆向强化学习是一种通过观察行为并推断出产生这些行为的奖励函数的方法。在搜索预测中，我们可以利用逆向强化学习从观察者的行为中学习他们的搜索策略，并预测他们未来的搜索行为。那逆强化学习和强化学习有什么区别呢？强化学习主要应用于机器人控制、游戏等领域，其中智能体需要在动态环境中自主学习和决策。逆强化学习更适用于从人类行为中学习，例如模仿学习、行为理解等。强化学习是通过试错的方式学习最优策略，而逆向强化学习则是通过观察行为并推断出奖励函数，进而推断出最优策略。通俗来讲，与传统的强化学习相比，逆强化学习多了一个解释性的角度，即不仅要做出正确的动作，还要理解为什么要这么做。<br><img src="/images/8/1-3.png"><br><img src="/images/8/1-4.png"><br><img src="/images/8/1-5.png"></p>
+<h4 id="Dynamic-Contextual-Belief-DCB-："><a href="#Dynamic-Contextual-Belief-DCB-：" class="headerlink" title="Dynamic-Contextual-Belief (DCB)："></a>Dynamic-Contextual-Belief (DCB)：</h4><p>动态上下文信念（DCB）：DCB包含观察者状态、任务上下文、图像特征等要素，有三个组成部分1.1) Fovea（中央凹：中央凹之外的视觉输入分辨率较低，模糊程度取决于周边观察输入与中央凹之间的距离。）2.情境信念3.动态（指每次注视后发生的状态表示的变化）。<br>这些在观察者的注视过程中不断积累和更新，指导其下一步的注视位置。基于逆向强化学习进行更新。比较实际与预测的注视位置，并考虑任务上下文和图像特征，持续更新DCB状态。<br><img src="/images/8/1-6.png"><br><img src="/images/8/1-7.png"></p>
+<h4 id="数据集："><a href="#数据集：" class="headerlink" title="数据集："></a>数据集：</h4><p>COCO-Search18数据集，提供了大规模、多样化的数据集，用于研究目标导向的注意力机制。模拟人类视觉搜索过程，有助于理解人类注意力分配方式，并在计算机视觉系统中实现类似功能。标注的信息包括每个人在寻找目标物体时的注视位置、时间，以及完成任务的成功率。在实验设置中，我们使用了COCO-Search18数据集，该数据集包含了10个人在寻找18个目标物体时的标注信息。我们基于这些标注信息，利用逆向强化学习算法，训练了一个预测模型，该模型可以预测人类在寻找特定目标时的注视模式。<br>COCO-Search18数据集用在标准目标存在（TP）或目标不存在（TA）搜索任务期间进行的人类注视来注释COCO，其中在每次试验中，搜索图像要么描绘目标（TP）要么没有明显目标（TA）。<br><img src="/images/8/1-8.png"></p>
+<h4 id="Reward-and-Policy-Learning"><a href="#Reward-and-Policy-Learning" class="headerlink" title="Reward and Policy Learning"></a>Reward and Policy Learning</h4><p>我们使用生成对抗模仿学习（GAIL）来学习视觉搜索行为的奖励函数和策略。GAIL是一个带有判别器和生成器的对抗框架。该策略是生成器，旨在生成类似于人类行为的状态-动作对。奖励函数将状态-动作对映射为数值，并且该函数被公式化为鉴别器输出的对数。<br>生成器的作用：通过采样图像和任务中的眼动，生成假状态动作对，用于辨别器进行学习和预测。这些假状态动作对基于逆向强化学习框架生成，模拟观察者的真实注视过程。欺骗判别器。<br>辨别器的作用：通过区分真假状态动作对，学习并预测观察者的真实注视模式。利用生成器提供的假状态动作对和观察者真实的眼动数据，比较真假数据差异，不断优化预测能力。辨认出生成器生成的动作对和真实的数据。<br>在训练过程中，生成器和辨别器相互交互和迭代，共同优化整个逆向强化学习框架的性能。</p>
+<h4 id="贡献以及意义："><a href="#贡献以及意义：" class="headerlink" title="贡献以及意义："></a>贡献以及意义：</h4><p>提出了一种预测搜索定点扫描路径的新模型，该模型使用 IRL 来联合恢复人们在视觉搜索过程中使用的奖励函数和策略。IRL 模型使用了一种新颖且具有高度解释能力的状态表示法–动态上下文信念（DCB），DCB 会更新对物体的信念，以获得随每次新的定点而动态变化的物体上下文。<br>IRL模型  (i) 了解对象的场景上下文； (ii) 泛化以预测新受试者 的行为，(iii) 与其他模型相比，需要更少的数据来实现良好的性能。<br>最后，我们学习了如何量化搜索任务中注视点的奖励函数。这将使新一波的实验研究成为可能，最终将更好地理解目标导向的注意力。<br>对行为视觉文献产生了影响，因为对于真实图像来说，引导人类目标导向型注意力的视觉特征仍然鲜为人知。</p>
+<h4 id="想要完成的："><a href="#想要完成的：" class="headerlink" title="想要完成的："></a>想要完成的：</h4><p>模型实现（<a target="_blank" rel="noopener" href="https://github.com/cvlab-stonybrook/Scanpath_Prediction%EF%BC%89%EF%BC%9A">https://github.com/cvlab-stonybrook/Scanpath_Prediction）：</a><br>1.必要的库和模块：<br>·detectron2：一个用于目标检测和语义分割的库。<br>·torch：PyTorch 是一个流行的深度学习框架，用于构建神经网络模型和进行数值计算。<br>·tqdm：一个用于在命令行界面中显示进度条的库，提供了一种更直观的方式来监控长时间运行的任务。<br>·tensorboard：TensorBoard 是 TensorFlow 生态系统中的一部分，用于可视化模型训练过程中的各种指标和数据。<br>·torchvision：这是 PyTorch 的视觉处理库，提供了常见的图像预处理、数据加载和模型架构。<br>·numpy：Numerical Python 是一个用于科学计算的基础库，提供了多维数组和矩阵操作的功能。<br>·scipy：Scientific Python 是一个用于数值计算和科学分析的库，包含了各种数学、统计和优化函数。<br>·pillow：Pillow 是 Python 中常用的图像处理库，用于图像的读取、编辑和保存。<br>·docopt：用于解析命令行参数的库，使得编写命令行工具更加简单。<br>·scikit-image：一个用于图像处理和分析的库，提供了丰富的图像变换和算法。<br>2.使用以下命令训练模型：<br>python train.py <hparams> <dataset_root> [–cuda=<id>]<br>绘制扫视路径的命令：<br>python plot_scanpath.py –fixation_path <fixation_file_path> –image_dir <image_dir><br>3.如何使用已经训练好的模型为新图像生成扫描路径（不在 COCO-Search18 中）<br>[1]计算 DCB<br>运行文件中的extract_DCBs_demo.py<br>主程序部分：<br>·加载预训练的模型和配置。<br>·根据配置构建骨干网络并将其移动到指定设备（cuda）。<br>·设置模型权重并进行评估模式。<br>·使用给定的图像路径和预测器计算高对比度和低对比度的特征。<br>·打印特征的形状。<br>遇到的问题：detectron2的安装（已解决）<br>运行代码后的结果：？<br><img src="/images/8/1-9.png"><br>[2]运行作者在github中给出的代码<br><img src="/images/8/1-10.png"><br><font color="red" size="4"> 遇到的问题：checkpoint_dir是什么 </font> </image_dir></fixation_file_path></id></dataset_root></hparams></p>
+<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">zn2102</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zn2102.github.io/2023/10/24/GroupEight/">https://zn2102.github.io/2023/10/24/GroupEight/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">zn2102</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E4%BD%BF%E7%94%A8%E9%80%86%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E7%9B%AE%E6%A0%87%E5%AF%BC%E5%90%91%E7%9A%84%E4%BA%BA%E7%B1%BB%E6%B3%A8%E6%84%8F%EF%A6%8A/">
+                                    <span class="chip bg-color">使用逆强化学习预测目标导向的人类注意力</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/10/25/GroupSeven/">
+                    <div class="card-image">
+                        
+                        <img src="/./images/7/1-0.png" class="responsive-img" alt="Predicting Human Scanpaths in Visual Question Answering">
+                        
+                        <span class="card-title">Predicting Human Scanpaths in Visual Question Answering</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            孟令琦 肖博雅 董一
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B0%8F%E7%BB%84%E4%BD%9C%E4%B8%9A/" class="post-category">
+                                    小组作业
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%9C%A8%E8%A7%86%E8%A7%89%E9%97%AE%E7%AD%94%E4%B8%AD%E9%A2%84%E6%B5%8B%E4%BA%BA%E7%B1%BB%E7%9A%84%E8%A7%86%E8%A7%89%E6%89%AB%E6%8F%8F%E8%B7%AF%E5%BE%84/">
+                        <span class="chip bg-color">在视觉问答中预测人类的视觉扫描路径</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/10/23/GroupNine/">
+                    <div class="card-image">
+                        
+                        <img src="/./images/9/1-0.png" class="responsive-img" alt="OOD">
+                        
+                        <span class="card-title">OOD</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            王月仙 邹芳冉
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B0%8F%E7%BB%84%E4%BD%9C%E4%B8%9A/" class="post-category">
+                                    小组作业
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%A4%96/">
+                        <span class="chip bg-color">分布外</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">zn2102</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis"><!--
+
+
+
+
+
+
+
+-->
+
+
+    <a href="https://qm.qq.com/q/tvkmBF3az6 theme.socialLink.qq " class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1678400948" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+<!--
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+-->
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
