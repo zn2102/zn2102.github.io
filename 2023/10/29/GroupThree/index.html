@@ -413,7 +413,12 @@
 <li>图像描述学习，将训练图像转换成一个视觉描述符包，这些描述符位于BERT语义空间中，由BERT模型从图像标签产生的词嵌入填充 ，学习一袋多标签图像描述符 (MID) 来表示一组BERT语义描述符的标签; </li>
 <li>噪声标签样本检测基于验证从 (1) 的多个描述符估计的排名靠前的标签是否是该样本的多个标签，根据MID分类的标签排名识别噪声样本；<br>3)基于最近邻样本的标签传播，对噪声样本进行平滑重标记。这平滑地重新标记了数据集，然后将其用于训练多标签分类。使用通过MID构建的图的标签传播来平滑地重新标记多标签样本。<br>受BoW的激励，如下图MID通过将其多个标签与一个全局视觉描述符包关联来表示一个图像。MID使用一组视觉描述符将图像投影到BERT的语义空间中，这些描述符被优化，以提高它们与BERT模型产生的语义描述符的相似性，从图像的多标签注释。<br><img src="/images/3/1-1.png"><br>用学习到的图像描述符构建一个图，以便顺利地对训练数据重新贴标签。考虑到学习视觉描述符可能更接近清洁标签的语义空间，我们制定检测噪声训练样本第一排名（相似度降序）的标签图像（根据余弦相似度与单词嵌入标签）。<br>实验主要包含4个数据集, 即两个包含噪音的训练集NIH 和 ChestXpert以及两个干净的测试集OpenI, PadChest和NIH-Google. 实验的主要策略就是在NIH/ChestXpert上训练然后再OpenI/PadChest/NIH-Google上测试。<br><img src="/images/3/1-2.png"></li>
 </ol>
-<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>
+<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h4 id="1-软件安装及使用"><a href="#1-软件安装及使用" class="headerlink" title="1.软件安装及使用"></a>1.软件安装及使用</h4><p>优势<br>由于Python的开源性，其中涉及到版本兼容问题，还要根据源码环境做环境配置调试。<br>教程<br>·<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32892383/article/details/116137730.%EF%BC%88%E5%9B%BE%E6%96%87%EF%BC%89">https://blog.csdn.net/qq_32892383/article/details/116137730.（图文）</a><br>·<a target="_blank" rel="noopener" href="https://space.bilibili.com/456667721%EF%BC%88%E8%A7%86%E9%A2%91%EF%BC%89">https://space.bilibili.com/456667721（视频）</a></p>
+<h4 id="2-源码、数据下载，环境配置"><a href="#2-源码、数据下载，环境配置" class="headerlink" title="2.源码、数据下载，环境配置"></a>2.源码、数据下载，环境配置</h4><p>原始数据<br><img src="/images/3/2-1.png"><br>已处理的数据及环境配置<br><img src="/images/3/2-2.png"></p>
+<h4 id="3-BOMD"><a href="#3-BOMD" class="headerlink" title="3.BOMD"></a>3.BOMD</h4><p>3.1 利用估计的来自其邻域的标签分布重新标记含噪多标签图像<br><img src="/images/3/2-3.png"><br>所提出的BoMD有两个阶段1 )图像描述学习，将训练图像转化为视觉描述符袋，该视觉描述符袋位于由图像标签计算的词嵌入填充的语义空间中；<br>2 )图构建，平滑地重新标记含噪多标签图像，其中每幅图像由从学习袋构建的子图表示</p>
+<p>3.2 将图像的多个标签关联到一袋全局视觉描述符来表示图像<br><img src="/images/3/2-4.png"><br>MID使用一组经过优化的视觉描述符将图像投影到BERT的语义空间中，以促进它们与BERT模型从图像的多标签标注中产生的语义描述符的相似性。</p>
+<p>3.3<br><img src="/images/3/2-5.png"><br>01.<br><img src="/images/3/2-6.png"><br>02.<br><img src="/images/3/2-7.png"><br>AUC：ROC曲线与坐标轴围成的面积，衡量学习器的性能。<br>mAP:多类别的平均精度的平均值，主要是用来衡量分类器的效果。</p>
+<h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>
                 
             </div>
             <hr/>

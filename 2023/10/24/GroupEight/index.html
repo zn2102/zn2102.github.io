@@ -417,7 +417,44 @@
 <h4 id="Reward-and-Policy-Learning"><a href="#Reward-and-Policy-Learning" class="headerlink" title="Reward and Policy Learning"></a>Reward and Policy Learning</h4><p>我们使用生成对抗模仿学习（GAIL）来学习视觉搜索行为的奖励函数和策略。GAIL是一个带有判别器和生成器的对抗框架。该策略是生成器，旨在生成类似于人类行为的状态-动作对。奖励函数将状态-动作对映射为数值，并且该函数被公式化为鉴别器输出的对数。<br>生成器的作用：通过采样图像和任务中的眼动，生成假状态动作对，用于辨别器进行学习和预测。这些假状态动作对基于逆向强化学习框架生成，模拟观察者的真实注视过程。欺骗判别器。<br>辨别器的作用：通过区分真假状态动作对，学习并预测观察者的真实注视模式。利用生成器提供的假状态动作对和观察者真实的眼动数据，比较真假数据差异，不断优化预测能力。辨认出生成器生成的动作对和真实的数据。<br>在训练过程中，生成器和辨别器相互交互和迭代，共同优化整个逆向强化学习框架的性能。</p>
 <h4 id="贡献以及意义："><a href="#贡献以及意义：" class="headerlink" title="贡献以及意义："></a>贡献以及意义：</h4><p>提出了一种预测搜索定点扫描路径的新模型，该模型使用 IRL 来联合恢复人们在视觉搜索过程中使用的奖励函数和策略。IRL 模型使用了一种新颖且具有高度解释能力的状态表示法–动态上下文信念（DCB），DCB 会更新对物体的信念，以获得随每次新的定点而动态变化的物体上下文。<br>IRL模型  (i) 了解对象的场景上下文； (ii) 泛化以预测新受试者 的行为，(iii) 与其他模型相比，需要更少的数据来实现良好的性能。<br>最后，我们学习了如何量化搜索任务中注视点的奖励函数。这将使新一波的实验研究成为可能，最终将更好地理解目标导向的注意力。<br>对行为视觉文献产生了影响，因为对于真实图像来说，引导人类目标导向型注意力的视觉特征仍然鲜为人知。</p>
 <h4 id="想要完成的："><a href="#想要完成的：" class="headerlink" title="想要完成的："></a>想要完成的：</h4><p>模型实现（<a target="_blank" rel="noopener" href="https://github.com/cvlab-stonybrook/Scanpath_Prediction%EF%BC%89%EF%BC%9A">https://github.com/cvlab-stonybrook/Scanpath_Prediction）：</a><br>1.必要的库和模块：<br>·detectron2：一个用于目标检测和语义分割的库。<br>·torch：PyTorch 是一个流行的深度学习框架，用于构建神经网络模型和进行数值计算。<br>·tqdm：一个用于在命令行界面中显示进度条的库，提供了一种更直观的方式来监控长时间运行的任务。<br>·tensorboard：TensorBoard 是 TensorFlow 生态系统中的一部分，用于可视化模型训练过程中的各种指标和数据。<br>·torchvision：这是 PyTorch 的视觉处理库，提供了常见的图像预处理、数据加载和模型架构。<br>·numpy：Numerical Python 是一个用于科学计算的基础库，提供了多维数组和矩阵操作的功能。<br>·scipy：Scientific Python 是一个用于数值计算和科学分析的库，包含了各种数学、统计和优化函数。<br>·pillow：Pillow 是 Python 中常用的图像处理库，用于图像的读取、编辑和保存。<br>·docopt：用于解析命令行参数的库，使得编写命令行工具更加简单。<br>·scikit-image：一个用于图像处理和分析的库，提供了丰富的图像变换和算法。<br>2.使用以下命令训练模型：<br>python train.py <hparams> <dataset_root> [–cuda=<id>]<br>绘制扫视路径的命令：<br>python plot_scanpath.py –fixation_path <fixation_file_path> –image_dir <image_dir><br>3.如何使用已经训练好的模型为新图像生成扫描路径（不在 COCO-Search18 中）<br>[1]计算 DCB<br>运行文件中的extract_DCBs_demo.py<br>主程序部分：<br>·加载预训练的模型和配置。<br>·根据配置构建骨干网络并将其移动到指定设备（cuda）。<br>·设置模型权重并进行评估模式。<br>·使用给定的图像路径和预测器计算高对比度和低对比度的特征。<br>·打印特征的形状。<br>遇到的问题：detectron2的安装（已解决）<br>运行代码后的结果：？<br><img src="/images/8/1-9.png"><br>[2]运行作者在github中给出的代码<br><img src="/images/8/1-10.png"><br><font color="red" size="4"> 遇到的问题：checkpoint_dir是什么 </font> </image_dir></fixation_file_path></id></dataset_root></hparams></p>
-<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>
+<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><p>首先安装软件以及对应库</p>
+<pre class="line-numbers language-none"><code class="language-none">有关此模型需要的库：
+torch
+tqdm
+tensorboard
+torchvision
+numpy
+scipy
+pillow
+docopt
+scikit-image<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>我们又下载了数据库detectron2（README中详细提及）<br>使用Detectron2，需要安装：对应版本pytorch、cuda、Visual Studio 2019<br>数据库应按照作者README中提到的数据库格式进行设置：<br><img src="/images/8/2-1.png"><br>使用作者发布的数据集processed，格式如下：<br><img src="/images/8/2-2.png"><br><img src="/images/8/2-3.png"><br>首先，运行train.py，格式如上。<br>因目的为实现已训练好的模型，故暂时跳过此步骤。</p>
+<ol>
+<li><img src="/images/8/2-4.png">这段代码主要实现了两个功能：坐标转换和扫描路径的绘制。<br>               Fixation_path示例:</li>
+</ol>
+<p><img src="/images/8/2-5.png"><br><img src="/images/8/2-6.png"><br>1.坐标转换函数&nbsp;convert_coordinate：<br>这个函数接受四个参数：X&nbsp;和&nbsp;Y&nbsp;是注视点的坐标，im_w&nbsp;和&nbsp;im_h&nbsp;是图像的宽度和高度。函数的目标是将这些坐标从显示坐标转换为像素坐标。</p>
+<pre class="line-numbers language-none"><code class="language-none">* 首先，定义了一个显示屏幕的目标宽高 `display_w` 和 `display_h`。 
+* 然后，计算了图像和目标显示屏幕的宽高比，以判断在显示屏幕上图像应该如何缩放。 
+* 如果图像的宽高比大于目标屏幕的宽高比，那么图像将被缩放到屏幕的宽度，并相应地调整高度。反之，图像将被缩放到屏幕的高度，并相应地调整宽度。 
+* 计算了缩放后图像与原始屏幕之间的差异（`delta_w` 和 `delta_h`），然后计算了缩放比例 `scale`。 
+* 最后，使用计算出的缩放比例和差异，将 `X` 和 `Y` 坐标转换为新的像素坐标。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>2.&nbsp;扫描路径绘制函数&nbsp;plot_scanpath：<br>这个函数用于绘制注视点的扫描路径。它接受以下参数：图像&nbsp;img，注视点的&nbsp;x&nbsp;坐标&nbsp;xs，注视点的&nbsp;y&nbsp;坐标&nbsp;ys，注视点的时间戳&nbsp;ts，以及一个可选的边界框&nbsp;bbox&nbsp;和标题&nbsp;title。</p>
+<pre class="line-numbers language-none"><code class="language-none">* 首先，使用 `plt.subplots()` 创建了一个新的图像和坐标轴。 
+* 使用 `ax.imshow(img)` 在坐标轴上显示了图像。 
+* 定义了一些用于绘制扫描路径的参数，如圆的最小和最大半径，以及时间戳的最小和最大值。 
+* 使用 `plt.arrow` 在坐标轴上绘制了注视点之间的箭头，表示扫描路径。 
+* 对于每个注视点，根据时间戳计算了圆的半径，并使用 `plt.Circle` 在坐标轴上绘制了一个圆。同时，使用 `plt.annotate` 在每个圆上添加了注释，显示注视点的顺序。 
+* 如果提供了边界框 `bbox`，则使用 `Rectangle` 在坐标轴上绘制一个矩形框。
+运行结果示例：<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/images/8/2-7.png"></p>
+<ol start="2">
+<li><p><img src="/images/8/2-8.png"><br>这段代码用于计算Dynamic-Contextual-Belief (DCB).，主要使用了Detectron2库。Detectron2是Facebook AI Research开发的一个目标检测、分割和姿态估计库，它建立在PyTorch之上。<br>1.导入依赖库：<br>otorch&nbsp;和&nbsp;torch.nn.functional：PyTorch库，用于深度学习模型的构建和计算。<br>onumpy：用于数组操作。<br>oPIL&nbsp;和&nbsp;ImageFilter：用于图像处理。<br>odetectron2&nbsp;和相关模块：用于构建和加载预训练的目标检测和分割模型。<br>2.设备设置：<br>odevice = torch.device(“cuda”)：设置PyTorch使用CUDA进行GPU加速。<br>3.定义&nbsp;pred2feat&nbsp;函数：<br>o这个函数将分割结果转换为特征表示。它接受分割结果&nbsp;seg&nbsp;和信息&nbsp;info&nbsp;作为输入，并输出一个经过插值的特征图。特征图的每个通道对应一个类别，如果该位置属于该类别，则值等于分割得分或1（取决于是否为“thing”类别）。<br>4.定义&nbsp;get_DCBs&nbsp;函数：<br>o这个函数用于计算图像的深度上下文偏差（DCBs）。它首先对图像进行高斯模糊处理，然后使用Detectron2的预训练模型对原始图像和模糊后的图像进行分割。然后，它使用&nbsp;pred2feat&nbsp;函数将分割结果转换为特征，并返回原始图像和模糊图像的特征。<br>5.主程序：<br>o加载Detectron2的配置文件，使用 Detectron2 的预测器 predictor 对输入图像进行 panoptic 分割，得到高分辨率和低分辨率的 panoptic 分割结果。<br>o将 panoptic 分割结果转换为特征图，其中物体类别的位置填充得分，非物体类别的位置填充二元掩码。<br>o对特征图进行插值，使其尺寸统一为 [20, 32]。<br>o返回高分辨率和低分辨率 DCB 特征图。<br>保存结果：<br><img src="/images/8/2-9.png"></p>
+</li>
+<li><p><img src="/images/8/2-10.png"><br>这段代码是一个用于处理训练数据和验证数据的函数，名为&nbsp;process_data。这个函数的主要任务是为模型训练准备数据，包括预处理注视点数据、提取图像数据以及生成一些辅助信息。</p>
+</li>
+</ol>
+<p>模型评估，使用作者给出的代码以及数据集实现代码功能：<br>用法:<br>    test.py <hparams> <checkpoint_dir> <dataset_root> [–cuda=<id>]<br>    test.py -h | –help<br><img src="/images/8/2-11.png"><br>其中，checkpoint<br><img src="/images/8/2-12.png"><br>为：<br><img src="/images/8/2-13.png"><br>Dataset_root使用作者给出的数据集processed。<br>更改的地方：源代码中，使用多线程数据加载，而我所使用的笔记本性能不足以支撑，报错多次后发现问题根源，更改为单线程后顺利运行。<br>运行结果：<br><img src="/images/8/2-14.png"><br><img src="/images/8/2-15.png"><br><img src="/images/8/2-16.png"></id></dataset_root></checkpoint_dir></hparams></p>
+<h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>
                 
             </div>
             <hr/>

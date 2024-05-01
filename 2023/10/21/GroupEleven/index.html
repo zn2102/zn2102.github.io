@@ -416,7 +416,18 @@
 <p>我们组了解了深度强化学习与深度学习的具体差别：它介于完全监督和完全没有预定义标签之间，会用到很多已经比较完善的监督学习方法来学习数据的表示（比如用深度神经网络来进行函数逼近、随机梯度下降和反向传播）它也不像非监督学习那样完全不需要其他信息，而是需要奖励系统（通过观察奖励并将其与选择的动作关联起来，智能体将学习如何更好地选择动作）</p>
 <p>同时了解了深度强化学习涉及的几个概念：智能体 环境 动作 奖励 观察</p>
 <p>接下来需要将论文以及代码看懂 并学会如何通过RLlib对代码进行优化</p>
-<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>
+<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h4 id="1-软件安装"><a href="#1-软件安装" class="headerlink" title="1.软件安装"></a>1.软件安装</h4><p>用conda指令安装pytorch:<br>先用conda指令创建一个环境命名pytorch<br><img src="/images/11/2-1.png"><br>进入创建的屋子<br><img src="/images/11/2-2.png"><br>去官网复制pytorch安装的指令<br><img src="/images/11/2-3.png"><br>开始安装pytorch<br><img src="/images/11/2-4.png"><br>Pip list查看<br><img src="/images/11/2-5.png"><br>导入torch检验是否安装成功<br><img src="/images/11/2-6.png"><br>返回true安装成功<br>接下来安装项目用到的包:gym,ray,math,numpy,pandas,matplotlib,seaborn<br>可以用pip语句也可以直接在pycharm中安装<br><img src="/images/11/2-7.png"></p>
+<h4 id="2-代码调试"><a href="#2-代码调试" class="headerlink" title="2.代码调试"></a>2.代码调试</h4><p>(1)<br><img src="/images/11/2-8.png"><br>Matplotlib 提供的seaborn 样式自3.6起已弃用，因为它们不再对应于seaborn 提供的样式。但是，它们仍将以“seaborn-v0_8-＜style﹥”形式提供。或者，直接使用seaborn API。plt.style.use(‘seaborn-white’)<br>修改:(‘seaborn-white’)改成(‘seaborn-v0_8-white’)<br><img src="/images/11/2-9.png"><br>(2)<br><img src="/images/11/2-10.png"><br>只有数据没有图<br>修改:在后面加上一行plt.show()<br><img src="/images/11/2-11.png"><br>(3)<br><img src="/images/11/2-12.png"><br>预计所有张量都在同一设备上，但发现至少有两个设备，cuda:0 和 cpu！（在方法wrapper_CUDA_addmm中检查参数mat1的参数时）</p>
+<p>张量:表示高维数组<br>最开始读取数据时的tensor变量copy一份到device所指定的GPU上去，之后的运算都在GPU上进行<br>在做高维特征运算的时候，采用GPU无疑是比用CPU效率更高，如果两个数据中一个加了.cuda()或者.to(device)，而另外一个没有加，就会造成类型不匹配而报错代码运行结果<br><img src="/images/11/2-13.png"><br>修改:<br>将Tensor或模型移动到指定的设备上：tensor.to(‘cuda:0’)</p>
+<ol>
+<li>Tensor.to(device)<br><img src="/images/11/2-14.png"><br><img src="/images/11/2-15.png"><br><img src="/images/11/2-16.png"></li>
+<li>model.to(device)<br><img src="/images/11/2-17.png"><br><img src="/images/11/2-18.png"></li>
+</ol>
+<h4 id="3-代码运行"><a href="#3-代码运行" class="headerlink" title="3.代码运行"></a>3.代码运行</h4><p><img src="/images/11/2-19.png"><br><img src="/images/11/2-20.png"><br><img src="/images/11/2-21.png"><br><img src="/images/11/2-22.png"><br><img src="/images/11/2-23.png"><br><img src="/images/11/2-24.png"><br><img src="/images/11/2-25.png"></p>
+<h4 id="4-框架理解"><a href="#4-框架理解" class="headerlink" title="4.框架理解"></a>4.框架理解</h4><p>传统定价模型是用某种需求模型对不同定价方案进行假设,用线性规划进行优化,<br><img src="/images/11/2-26.png"><br>目标函数使利润达到最大(给定价格水平×相应需求)<br>约束条件:确保每个时间间隔只有一个价格,因此引入0 1变量x,<br>第二个约束确保需求总和达到库存水平</p>
+<p>接下来构建需求模型:由于需求会受近期价格影响(价格下降会使需求激增,价格上涨会使需求下降),且价格上涨的影响和价格下降的影响不对称<br>构建价格-需求函数:<br><img src="/images/11/2-27.png"><br>由于价格与需求成反比得出第一项的线性关系,对于价格上涨和价格下降分别定义a b两个不同敏感性系数,s冲击函数指定价格与需求的非线性关系<br>用几个时间步长的价格向量得出相应利润函数,使价格时间表恒定得出的不是最优的定价,因此通过贪心算法动态寻找最优定价,即在每个时间步下寻找最优价格,冻结上一步并继续寻找下一时间步的最优价格<br>通过对价格-需求函数内部简单时间依赖关系的分析,可以知道利润不仅取决于当前价格还取决于价格的动态,因此可以采用更为灵活的方法–深度强化学习:<br>状态:任意时间步长的状态为所有先前时间步长的价格向量<br><img src="/images/11/2-28.png"><br>奖励:最大化t时间步长期间的累积奖励<br><img src="/images/11/2-29.png"><br>策略:可以编写递归方程<br><img src="/images/11/2-30.png"><br>γ代表先前状态价值的影响,(如果环境范围无限,γ=1则所有状态价值都为无穷大,环境范围有限则γ可以为1)<br>用时间差分误差作为损失函数逼近Q函数<br><img src="/images/11/2-31.png"><br>操作:以最大Q值执行操作<br>调试:改变γ的值<br>γ=1相对平坦不易区分<br>Γ=0.8只关注前10-12步有助于更快学习</p>
+<h4 id="5-自我理解"><a href="#5-自我理解" class="headerlink" title="5.自我理解"></a>5.自我理解</h4><p>论文中使用的是一步的DQN$Q^{/pi}(s,a)=r+γmaxQ(s^{‘},a^{‘})$<br>可以递归表示出Q(st+1, at+1)<br><img src="/images/11/2-32.png"><br>a,t+1意味着在t+1时刻执行动作a后的立即奖励。如果假设t+1时刻选择的动作a是最优的或接近最优的，可以省去max a操作，得到：<br><img src="/images/11/2-33.png"><br>这个值可以一次又一次的展开,通过将1步状态转移替换成更长的n步状态转移序列，就可以将这种展开应用到DQN更新中<br>假设有一个简单的4个状态（s1, s2, s3, s4）的环境，并且除了终结状态s4，每个状态都只有一个可用的动作<br><img src="/images/11/2-34.png"><br>在一步的情况下<br>1）Q(s1, a)←r1+γQ(s2, a)。<br>2）Q(s2, a)←r2+γQ(s3, a)。<br>3）Q(s3, a)←r3。<br>在训练开始时，顺序地完成前面的更新。前两个更新是没有用的，因为当前Q(s2, a)和Q(s2, a)是不对的，并且只包含初始的随机值。唯一有用的更新是第3个更新，它将奖励r3正确地赋给终结状态前的状态s3。<br>在第2次迭代，正确的值被赋给了Q(s2, a)，但是Q(s1, a)的更新还是不对的。只有在第3次迭代时才能给所有的Q赋上正确的值。所以，即使在1步的情况下，它也需要3步才能将正确的值传播给所有的状态。<br>在2步的情况下<br>1）Q(s1, a)←r1+γr2+γ2Q(s3, a)。<br>2）Q(s2, a)←r2+γr3。<br>3）Q(s3, a)←r3。<br>在这种情况下，第一次更新迭代会将正确的值赋给Q(s2, a)和Q(s3, a)。第二次迭代，Q(s1, a)也会被正确地更新。所以多步可以提升值的传播速度，也就是会加速收敛。<br>因此可以通过n步DQN提升收敛速度</p>
+<h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>
                 
             </div>
             <hr/>
@@ -739,6 +750,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
