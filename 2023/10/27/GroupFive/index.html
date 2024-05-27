@@ -420,7 +420,23 @@
 <li>pycharm<img src="/images/5/1-6.png"></li>
 </ol>
 <h4 id="三：我们组所做的内容"><a href="#三：我们组所做的内容" class="headerlink" title="三：我们组所做的内容"></a>三：我们组所做的内容</h4><p>图像分类和检索：CLIP可以通过将图像与自然语言文本描述关联起来进而可用于图像分类任务。它允许更通用和灵活的图像检索系统，用户可以使用文本查询来在数据库里搜索图像。<br>内容调节：CLIP可用于通过分析图像和附带文本来识别和过滤不适当或有害的内容，从而调节在线平台上的展示内容。</p>
-<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>
+<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3><h4 id="从零实现CLIP模型"><a href="#从零实现CLIP模型" class="headerlink" title="从零实现CLIP模型"></a>从零实现CLIP模型</h4><p>CLIP代表语言图像对比预训练模型，是OpenAI于2021年开发的一个深度学习模型。CLIP模型中图像和文本嵌入共享相同的潜在特征空间，从而能够在两种模式之间直接进行对比学习。这是通过训练模型使相关的图像和文本更紧密地结合在一起，同时将不相关的图像在特征空间距离分开来实现的。</p>
+<p>关于CLIP模型的一些应用总结如下： 图像分类和检索：CLIP可以通过将图像与自然语言文本描述关联起来进而可用于图像分类任务。它允许更通用和灵活的图像检索系统，用户可以使用文本查询来在数据库里搜索图像。 内容调节：CLIP可用于通过分析图像和附带文本来识别和过滤不适当或有害的内容，从而调节在线平台上的展示内容。</p>
+<h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><p>CLIP模型旨在预测一个batch中N×N个潜在(img,text)配对具体哪些是实际匹配的。为了实现这一点，CLIP通过图像编码器和文本编码器的联合训练建立了一个多模态嵌入空间。CLIP的损失函数旨在最大化批处理中N个真实配对的图像和文本嵌入之间的余弦相似性，同时最小化N²−N个错误配对的余弦相似度。<br><img src="/images/5/3-1.png"></p>
+<h4 id="clip模型具体的网络结构"><a href="#clip模型具体的网络结构" class="headerlink" title="clip模型具体的网络结构"></a>clip模型具体的网络结构</h4><p><img src="/images/5/3-2.png"></p>
+<h4 id="数据输入"><a href="#数据输入" class="headerlink" title="数据输入"></a>数据输入</h4><p>该模型每个批次以 n 个图像和文本对作为输入，其中：I[n，h，w，c]：表示对齐的图像的小批次输入，其中n是batch大小，h是图像高度，w是图像宽度，c是通道数。 T[n，l]：表示对齐文本的小批次输入，其中n是batch大小，l是文本序列的长度。我们的实现中，我们默认batch的大小为128，如下所示：<br><img src="/images/5/3-3.png"></p>
+<h4 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h4><p>关于文本和图像的特征提取，这里使用resnet34和distilbert来分别提取图像和文本的特征，如下： I_f = image_encoder(I) : 从图像编码器中获取的图像特征表示I_f。I_f的大小为[n，d_I]，其中d_I是图像特征的维度。 T_f=text_encoder(T)：从文本编码器中获取的文本特征表示T_f。T_f的大小为[n，d_T]，其中d_T是文本特征的维度。</p>
+<pre class="line-numbers language-none"><code class="language-none"># for encoding images
+I_f = models.resnet34(pretrained=True)    
+ # for encoding captions
+T_f= AutoModel.from_pretrained(“distilbert-base-multilingual-cased”)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>接着，我们将相应的文本和图像特征，映射到同一嵌入特征空间，如下： W_i[d_i,d_e]：表示用于将图像特征i_f映射到嵌入特征空间i_e的投影矩阵。W_i的形状大小是[d_i，d_e]，其中d_e表示的是联合嵌入特征空间的维度。W_t[d_t,d_e]：表示用于将文本特征t_f映射到相同嵌入空间t_e的投影矩阵。W_t的形状大小是[d_t，d_e]。投影操作可以使用具有两个线性层的神经网络进行编码，其权重是学习的投影矩阵。在大多数情况下，投影权重是唯一可以在新数据集上需要训练的权重。此外，投影层在对齐图像和文本嵌入的尺寸方面发挥着至关重要的作用，确保它们具有相同的维度。<br><img src="/images/5/3-4.png"><br>接着我们将上述相关组件进行整合： I_e  = l2_normalize(np.dot(I_f, W_i), axis=1) ：在联合嵌入空间I_e中嵌入并归一化图像特征 T_e = l2_normalize(np.dot(T_f, W_t), axis=1) ：在联合嵌入空间T_e中嵌入并归一化文本特征接着我们使用以下Pytorch代码来描述图像和文本数据的处理次序。首先，相应的数据通过基本编码器进行处理，然后通过投影层进行处理。最后，为两种模态特征进行嵌入归一化化并返回。<br><img src="/images/5/3-5.png"><br>接着在嵌入空间，我们来计算文本图像嵌入特征的相似度：logits = np.dot(I_e, T_e.T) * np.exp(t)：用以计算图像和文本对在联合嵌入空间的特征余弦相似度，通过可学习的参数 t 进行缩放。在我们的例子中，我们考虑暂不使用参数 t，代码如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">logits = T_e @ T_e.T<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>CLIP使用对比损失用以将相关图像和文本在嵌入特征空间拉近，同时将不相关的图像和文本距离拉远。labels = np.arange(n): 用以生成表示batch索引的真值标签。loss_i = cross_entropy_loss(logits, labels, axis=0)：用以计算图像特征和真值标签的损失loss_t = cross_entropy_loss(logits, labels, axis=1)：用以计算文本特征和真值标签的损失 loss = (loss_i + loss_t)/2：计算图像和文本损失的加权平均值。<br><img src="/images/5/3-6.png"></p>
+<h4 id="构建完整模型"><a href="#构建完整模型" class="headerlink" title="构建完整模型"></a>构建完整模型</h4><p><img src="/images/5/3-7.png"><br>我们的自定义CLIP模型将使用flickr30k数据集进行训练。该数据集包括31000多张图像，每张图像至少有5个独立的人工生成文本描述。在这个例子中，我们将为每个图像使用两个标题，总共有62000个图像和文本对用于训练。<br><img src="/images/5/3-8.png"><br>上述模型关键常数包括用于学习表示特征空间的维度embed_dim, 用于transformer特征维度的transformer_embed_dim和用于文本输入长度的max_len。所选的text_model是distilbert base multilanguage-cased。用以训练的模型的epoch为3，同时batch_size的大小为128，这些常数将用于模型构建和训练<br><img src="/images/5/3-9.png"></p>
+
                 
             </div>
             <hr/>

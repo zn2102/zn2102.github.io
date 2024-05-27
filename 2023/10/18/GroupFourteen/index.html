@@ -411,7 +411,21 @@
 <h2 id="项目进度"><a href="#项目进度" class="headerlink" title="项目进度"></a>项目进度</h2><h3 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h3><h4 id="项目具体情况"><a href="#项目具体情况" class="headerlink" title="项目具体情况:"></a>项目具体情况:</h4><p>论文创新方法解决图像去噪问题，不同于传统的基于模型和基于数据驱动方法，采取图像掩码遮蔽方法去除噪声。屏蔽掉一部分输入像素，然后训练深度网络来完成修复。在论文的方法中，使用核大小为 1 的卷积层作为特征嵌入模块，将 3 通道像素值投影到 C 维特征标记中。其中1 * 1 卷积层确保像素在特征嵌入过程中不会相互影响，便于后续的遮蔽操作。主要从两个方面解决去噪问题，输入掩码和注意力掩码。输入掩码随机屏蔽了第一卷积层嵌入的特征标记，并促进网络在训练过程中修复被屏蔽的信息。当训练与真实测试不同时，网络将会通过增加图片亮度来输出图片。因此，还需引入注意力掩码解决问题，可以通过在自我注意力过程中执行相同的掩码操作来缩小训练和测试之间的差距。</p>
 <h4 id="项目流程图"><a href="#项目流程图" class="headerlink" title="项目流程图:"></a>项目流程图:</h4><p><img src="/images/14/1-1.png"></p>
 <h4 id="项目进度："><a href="#项目进度：" class="headerlink" title="项目进度："></a>项目进度：</h4><p>论文翻译完成并相对了解项目的目的及其使用的方法，目前在翻译代码，通过对论文的结合，初步理解代码的作用，目前在细化分析代码的编写逻辑以及配置相关的库。</p>
-<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3>
+<h3 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h3><h3 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h3><h4 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h4><p>当前深度去噪网络存在泛化能力差的情况，例如，当训练集噪声类型和测试集噪声类型不一致时，模型的性能会大打折扣。作者认为其原因在于网络倾向于过度拟合训练噪声，而没有学习图像自身的内在结构。为了解决这个问题,作者提出了一种遮盖图像训练的策略（masked image training）。<br><img src="/images/14/3-1.png"><br><img src="/images/14/3-2.png"></p>
+<h4 id="项目内容"><a href="#项目内容" class="headerlink" title="项目内容"></a>项目内容</h4><p><img src="/images/14/3-3.png"><br>整体网络架构基于了Swin Transformer。提出一种masked training的方法来提高模型的泛化能力。主要包含两个方面:</p>
+<p><img src="/images/14/3-4.png"><br>Input Mask<br>    在特征提取之后,会对输入图像进行随机大比例遮盖（input mask）,比如遮盖75%~85%的像素。这将构造一个非常具有挑战性的图像修复问题,迫使模型学习重构被遮盖的图像内容,而不能简单依靠检测并移除噪声模式。</p>
+<p>Attention Mask<br>    在self-attention层也进行类似的随机遮盖。这是为了减轻训练和测试的不一致性。由于input mask只在训练使用,测试时的输入是完整的图像。因此我们使用attention mask可以平衡这一差异。</p>
+<h4 id="对代码的理解"><a href="#对代码的理解" class="headerlink" title="对代码的理解"></a>对代码的理解</h4><p><img src="/images/14/3-5.png"><br>这段代码的目的是准备输入图像以满足模型的尺寸要求，执行模型推断，并裁剪输出以匹配原始输入的大小。</p>
+<p><img src="/images/14/3-6.png"><br>这段代码是图像处理和评估的一部分，主要用于计算超分辨率（Super-Resolution），它使用了峰值信噪比（PSNR）、结构相似性指数（SSIM）和LPIPS（Learned Perceptual Image Patch Similarity）三种不同的指标来评估恢复图像与原始高质量图像之间的相似性。</p>
+<p><img src="/images/14/3-7.png"><br>这段代码是对之前计算得到的性能指标（PSNR、SSIM和LPIPS）进行汇总和平均化，并打印出平均值的结果。</p>
+<p><img src="/images/14/3-8.png"><br>这段代码定义一个名为define_model的函数，这个函数主要目的是根据传入的args参数和全局的opt_net字典来定义并返回一个net模型。如果任务类型是masked_denoising，函数会从全局变量opt_net中获取一系列参数，并使用这些参数来创建一个net模型的实例。</p>
+<p><img src="/images/14/3-9.png"><br>这段代码是define_model函数的一部分，它根据args参数初始化一个用于真实世界图像超分辨率的模型。根据判断是否需要大模型，它将选择不同的配置来创建模型。</p>
+<p><img src="/images/14/3-10.png"><br>这段代码是define_model函数的一部分，为灰度图像、彩色图像去噪任务配置和初始化一个模型的。还定义了一个用于减少JPEG压缩伪影的模型，并从指定路径加载了预训练权重。</p>
+<p><img src="/images/14/3-11.png"><br>setup 函数用于根据不同的任务类型(args.task)设置保存目录、文件夹、边界大小和窗口大小等参数。该函数根据args.task的值来选择不同的代码块来执行，并返回设置好的参数。</p>
+<p><img src="/images/14/3-12.png"><br>这段代码定义了一个名为get_image_pair的函数，该函数根据输入的参数args和路径path，从相应的文件位置加载并预处理图像。它针对不同的任务（args.task）进行不同的操作，以获取高质量（gt）和低质量（lq）的图像对，或者仅获取低质量图像。</p>
+<p><img src="/images/14/3-13.png"><br>这段代码定义了一个函数im2tensor，该函数将一个图像（通常是一个NumPy数组）转换为一个PyTorch张量（Tensor），并且对其进行归一化。<br>定义了一个名为test的函数，该函数这段代码实现了一个图像模型的逐块（tile-by-tile）测试功能。</p>
+<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><p><img src="/images/14/3-14.png"></p>
+
                 
             </div>
             <hr/>
@@ -602,8 +616,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%A4%9A%E6%A0%87%E7%AD%BE%E7%AC%A6%E5%8C%85%E8%83%B8%E9%83%A8X%E5%B0%84%E7%BA%BF%E5%88%86%E7%B1%BB/">
-                        <span class="chip bg-color">多标签符包胸部X射线分类</span>
+                    <a href="/tags/%E5%A4%9A%E6%A0%87%E7%AD%BE%E7%AC%A6%E5%8C%85%E8%83%B8%E9%83%A8X%E5%B0%84%E7%BA%BF%E5%88%86%E7%B1%BB-%E9%AB%98%E6%A0%A1%E5%BD%95%E5%8F%96%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB%E5%AE%9E%E9%AA%8C/">
+                        <span class="chip bg-color">多标签符包胸部X射线分类/高校录取数据爬虫实验</span>
                     </a>
                     
                 </div>
